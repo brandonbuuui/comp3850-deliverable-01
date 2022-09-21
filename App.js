@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './app/navigation/StackNavigator';
+import TabNavigator from './app/navigation/TabNavigator';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createRoot } from 'react-dom/client'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>TESTING</Text>
-      <Text>Testing aaa</Text>
-      <Text> test-branch-01 </Text>
-      <Text> test-branch-02 </Text>
-      <Text> testing 01 </Text>
-      <Text> testing 02 </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StackNavigator/>
+    </NavigationContainer>
   );
 }
 
