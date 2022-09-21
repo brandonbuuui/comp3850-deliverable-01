@@ -6,7 +6,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>TESTING</Text>
       <Text>Testing aaa</Text>
-      <Text> test-branch-01 </Text>
+      <Text> test-branch-02 </Text>
       <StatusBar style="auto" />
     </View>
   );
