@@ -8,6 +8,7 @@ export default function App() {
       <Text>Testing aaa</Text>
       <Text> test-branch-01 </Text>
       <Text> test-branch-02 </Text>
+      <Text> testing 01 </Text>
       <StatusBar style="auto" />
     </View>
   );
