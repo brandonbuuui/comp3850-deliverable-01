@@ -9,6 +9,7 @@ export default function App() {
       <Text> test-branch-01 </Text>
       <Text> test-branch-02 </Text>
       <Text> testing 01 </Text>
+      <Text> testing 02 </Text>
       <StatusBar style="auto" />
     </View>
   );
