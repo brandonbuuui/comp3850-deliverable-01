@@ -5,7 +5,7 @@ import { View, StyleSheet, Text, Button } from 'react-native';
 function LoginScreen({navigation}) {
     return (
         <View style = {styles.container}>
-            <Text>LOGIN SCREEN TEST</Text>
+            <Text>LOGIN SCREEN TEST TEST</Text>
             <Button 
                 title = "Register"
                 onPress = {
