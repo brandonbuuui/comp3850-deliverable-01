@@ -2,10 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Button } from 'react-native';
 
-function MeetingConfirmScreen({navigation}) {
+function ChatScreen({navigation}) {
     return (
         <View style = {styles.container}>
-            <Text>MeetingConfirmScreen SCREEN</Text>
+            <Text>CHAT SCREEN</Text>
         </View>
     );
 }
@@ -19,4 +19,4 @@ const styles = StyleSheet.create ({
     }
 });
 
-export default MeetingConfirmScreen;
+export default ChatScreen;

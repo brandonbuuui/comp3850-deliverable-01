@@ -10,6 +10,7 @@ import MeetingsListScreen from '../screens/MeetingsListScreen';
 import MeetingBookingScreen from '../screens/MeetingBookingScreen';
 import MeetingConfirmScreen from '../screens/MeetingConfirmScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import MeetingDetailsScreen from '../screens/MeetingDetailsScreen';
 
 const AppStack = createStackNavigator();
 
@@ -19,6 +20,8 @@ const StackNavigator = () => (
         <AppStack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="Forgot Password" component={ForgotPasswordScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="TabScreens" component={TabNavigator} options={{headerShown:false}}/>
+        <AppStack.Screen name="Book" component={MeetingBookingScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name="Details" component={MeetingDetailsScreen} options={{headerShown:false}}/>
     </AppStack.Navigator>
 )
 
