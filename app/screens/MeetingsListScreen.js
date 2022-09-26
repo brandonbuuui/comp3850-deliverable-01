@@ -33,7 +33,9 @@ function MeetingsListScreen({navigation}) {
                     renderItem={({item}) => 
                             <TouchableOpacity
                                 style = {styles.meetingCard}      
-                                onPress = {() => navigation.navigate("Details")}
+                                onPress = {() => navigation.navigate("Details", {
+                                    date: item.date
+                                })}
                             >
                                 <Text style = {styles.meetingCardText}>
                                     {item.date}

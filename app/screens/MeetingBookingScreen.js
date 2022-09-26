@@ -10,7 +10,13 @@ import DataManager from '../config/DataManager';
 
 function MeetingBookingScreen({navigation}) {
     let data = DataManager.getInstance();
-    const [startDate, setStartDate] = useState(new Date())
+    const [startDate, setStartDate] = useState(new Date());
+      const filterPassedTime = (time) => {
+        const currentDate = new Date();
+        const selectedDate = new Date(time);
+    
+        return currentDate.getTime() < selectedDate.getTime();
+      };
 
     return (
         <View style = {styles.container}>
@@ -28,10 +34,13 @@ function MeetingBookingScreen({navigation}) {
                     onChange={(date) => {
                         setStartDate(date)
                     }}
+                    minDate={new Date()}
+                    showDisabledMonthNavigation
                     showTimeSelect
                     timeFormat="HH:mm"
                     timeIntervals={15}
                     timeCaption="time"
+                    filterTime={filterPassedTime}
                     dateFormat="MMMM d, yyyy h:mm"
                     inline
                 />
@@ -49,7 +58,6 @@ function MeetingBookingScreen({navigation}) {
                         } else {
                             data.addMeeting(startDate.toString());
                         }
-                        
                     }}
                 >
                     <Text style = {styles.buttonText}>Book</Text>
@@ -60,23 +68,6 @@ function MeetingBookingScreen({navigation}) {
                 >
                     <Text style = {styles.buttonText}>Cancel</Text>
                 </TouchableOpacity> 
-
-
-                {/* <AppButton
-                    title = "Book"
-                    color = "lightblue"
-                    onPress = {(data, startDate) => {
-                        data.addMeeting(startDate)
-                        navigation.navigate("Meetings")
-                    }}
-                >
-                    </AppButton>
-                <AppButton
-                    title = "Cancel"
-                    color = "lightblue"
-                    onPress = {() => navigation.goBack()}
-                >
-                </AppButton> */}
             </View>
         </View>
     );

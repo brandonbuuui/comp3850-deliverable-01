@@ -2,10 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Button } from 'react-native';
 
-function MeetingDetailsScreen({navigation}) {
+function MeetingDetailsScreen({route, navigation}) {
+    const {date} = route.params
     return (
         <View style = {styles.container}>
             <Text>MeetingDetailsScreen</Text>
+            <Text>{date.toString()}</Text>
         </View>
     );
 }

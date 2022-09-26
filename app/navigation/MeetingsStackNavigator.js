@@ -16,12 +16,8 @@ const AppStack = createStackNavigator();
 
 const StackNavigator = () => (
     <AppStack.Navigator>
-        <AppStack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="Forgot Password" component={ForgotPasswordScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="TabScreens" component={TabNavigator} options={{headerShown:false}}/>
-        <AppStack.Screen name="Book" component={MeetingBookingScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="Confirmation" component={MeetingConfirmScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name="Meetings" component={MeetingsListScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name="Details" component={MeetingDetailsScreen} options={{headerShown:false, unmountOnBlur:true,}}/>
     </AppStack.Navigator>
 )
 

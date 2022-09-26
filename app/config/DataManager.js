@@ -1,7 +1,7 @@
 export default class DataManager {
     static myInstance = null;
     userID = "";
-    meetingsCount = 0;
+    meetingsCount = 1;
 
     photos = [
         {
@@ -31,7 +31,7 @@ export default class DataManager {
         {
              date: "Mon Sep 26 2022 01:15:00 GMT+1000 (Australian Eastern Standard Time)",
              id: 0
-        },
+        }
     ]
 
     static getInstance() {
@@ -50,6 +50,10 @@ export default class DataManager {
     }
     getPhotos(id) {
         return this.photos.filter((photo) => photo.userid === id);
+    }
+
+    getMeetings() {
+        return this.meetings
     }
 
     addMeeting(obj) {
