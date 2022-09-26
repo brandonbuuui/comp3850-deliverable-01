@@ -5,11 +5,11 @@ import AppColours from '../config/AppColours';
 import {TouchableOpacity} from 'react-native-gesture-handler'
 
 function MeetingConfirmScreen({route, navigation}) {
-    const {date} = route.params
+    const {date, time} = route.params
     return (
         <View style = {styles.container}>
             <Text>MeetingConfirmScreen SCREEN</Text>
-            <Text>{date.toString()}</Text>
+            <Text>The meeting is at {time} on the {date}</Text>
             <TouchableOpacity 
                 style = {styles.button}
                 onPress = {() => navigation.navigate("Meetings")}

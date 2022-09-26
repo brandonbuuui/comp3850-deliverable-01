@@ -30,7 +30,8 @@ export default class DataManager {
 
     meetings = [
         {
-             date: "Mon Sep 26 2022 01:15:00 GMT+1000 (Australian Eastern Standard Time)",
+             date: "26/09/2022",
+             time: "5:00pm",
              id: 0
         }
     ]
@@ -74,10 +75,11 @@ export default class DataManager {
         return this.meetings
     }
 
-    addMeeting(obj) {
+    addMeeting(date, time) {
         this.meetings.push({
             id: this.meetingsCount,
-            date: obj
+            date: date,
+            time: time
         });
         this.meetingsCount++;
     }

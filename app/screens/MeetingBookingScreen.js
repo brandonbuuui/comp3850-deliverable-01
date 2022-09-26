@@ -7,6 +7,7 @@ import AppColours from '../config/AppColours';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DataManager from '../config/DataManager';
+import {format} from 'date-fns'
 
 function MeetingBookingScreen({navigation}) {
     let data = DataManager.getInstance();
@@ -50,13 +51,18 @@ function MeetingBookingScreen({navigation}) {
                     style = {styles.bookButton}
                     onPressOut = {() => {
                         navigation.navigate("Confirmation", {
-                            date: startDate
+                            date: format(startDate, "d/MM/yyyy"),
+                            time: format(startDate, "h:mmaaa")
                         })
                         if (data.meetings.length == 0) {
                             data.meetings = [{id: 0, date: startDate.toString()}];
                             data.meetingsCount++;
                         } else {
-                            data.addMeeting(startDate.toString());
+                            const formattedDate = format(startDate, "d/MM/yyyy")
+                            const formattedTime = format(startDate, "h:mmaaa")
+                            console.log(formattedDate)
+                            console.log(formattedTime)
+                            data.addMeeting(formattedDate, formattedTime);
                         }
                     }}
                 >

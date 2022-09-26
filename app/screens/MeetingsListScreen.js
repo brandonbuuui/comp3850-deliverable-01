@@ -51,6 +51,9 @@ function MeetingsListScreen({navigation}) {
                                 <Text style = {styles.meetingCardText}>
                                     {item.date}
                                 </Text>
+                                <Text style = {styles.meetingCardText}>
+                                    {item.time}
+                                </Text>
                             </TouchableOpacity>
 
                     }
