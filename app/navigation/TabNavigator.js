@@ -15,6 +15,7 @@ import ChatScreen from '../screens/ChatScreen';
 import SurveyListScreen from '../screens/SurveyListScreen';
 import MeetingDetailsScreen from '../screens/SurveyListScreen';
 
+import HomeStackNavigator from '../navigation/HomeStackNavigator'
 import MeetingsStackNavigator from '../navigation/MeetingsStackNavigator'
 import AppColours from '../config/AppColours';
 

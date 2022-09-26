@@ -2,6 +2,7 @@ export default class DataManager {
     static myInstance = null;
     userID = "";
     meetingsCount = 1;
+    currUser = []
 
     photos = [
         {
@@ -34,6 +35,23 @@ export default class DataManager {
         }
     ]
 
+    users = [
+        {
+            id: "user1",
+            name:"Winter Soldier",
+            email:"winter.soldier@gmail.com",
+            password:"1922",
+            image: require('../public/bucky.jpg')
+        },
+        {
+            id: "user2",
+            name:"Steve Rogers",
+            email:"captain.steve@yahoo.com",
+            password:"1945",
+            image: require('../assets/cap.jpeg')
+        },
+    ];
+
     static getInstance() {
         if (DataManager.myInstance == null) {
             DataManager.myInstance = new DataManager();
@@ -62,5 +80,17 @@ export default class DataManager {
             date: obj
         });
         this.meetingsCount++;
+    }
+
+    getCurrUser() {
+        return this.currUser
+    }
+
+    setCurrUser(name) {
+        this.users.forEach(e => {
+            if (e.name == name) {
+                this.currUser = e;
+            }
+        })
     }
 }

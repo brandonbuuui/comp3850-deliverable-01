@@ -16,8 +16,7 @@ const AppStack = createStackNavigator();
 
 const StackNavigator = () => (
     <AppStack.Navigator>
-        <AppStack.Screen name="Meetings" component={MeetingsListScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="Details" component={MeetingDetailsScreen} options={{headerShown:false, unmountOnBlur:true,}}/>
+        <AppStack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}/>
     </AppStack.Navigator>
 )

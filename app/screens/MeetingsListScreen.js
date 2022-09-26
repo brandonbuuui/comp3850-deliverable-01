@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, Image } from 'react-native';
 import DataManager from '../config/DataManager';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import {Ionicons} from '@expo/vector-icons'
 
 function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
+    console.log(data.getCurrUser().image);
 
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
-                <Text>
-                    HEADER
-                </Text>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("Profile")}
+                    style = {styles.profileButton}
+                >
+                    <Ionicons name='person-outline' size = '20'/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                >
+                    <Ionicons name='chevron-back-outline' size = '20'/>
+                </TouchableOpacity>
             </View>
             <View style = {styles.title}>
                 <Text>
@@ -71,7 +82,8 @@ const styles = StyleSheet.create ({
     },
     header: {
         flex: 1.5,
-        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row-reverse',
         width: "100%",
         borderColor: 'red',
         borderWidth: 5,
@@ -118,6 +130,15 @@ const styles = StyleSheet.create ({
         fontSize: 22,
         fontWeight: '600',
     }, 
+    profileButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 44/2,
+        backgroundColor: AppColours.lightblue,
+        marginRight: 5,
+    },
     item: {
         padding: 10,
         fontSize: 18,
@@ -135,6 +156,9 @@ const styles = StyleSheet.create ({
         alignContent: 'center',
         color: 'white',
         fontSize: 20,
+    },
+    backButton: {
+        marginRight: 200,
     }
 
 });
