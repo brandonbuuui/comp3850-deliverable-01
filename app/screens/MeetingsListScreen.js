@@ -30,15 +30,16 @@ function MeetingsListScreen({navigation}) {
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
-                <Text>
-                    TITLE
+                <Text style={{fontSize: 40, borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF'}}>
+                    Meetings List
                 </Text>
             </View>
             <View style = {styles.meetingsList}>
-                <Text>
+                <Text style={{fontSize:20,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Upcoming Meetings
                 </Text>
                 <FlatList
+                    style={{borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF'}}
                     data = {meetings}
                     keyExtractor = {item => item.id}
                     renderItem={({item}) => 
@@ -48,6 +49,9 @@ function MeetingsListScreen({navigation}) {
                                     date: item.date
                                 })}
                             >
+                                <Text style = {styles.meetingCardTitle}>
+                                    Meeting
+                                </Text>
                                 <Text style = {styles.meetingCardText}>
                                     {item.date}
                                 </Text>
@@ -60,7 +64,7 @@ function MeetingsListScreen({navigation}) {
                 />
             </View>
             <View style = {styles.meetingsList}>
-                <Text>
+                <Text style={{fontSize:20,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Previous Meetings
                 </Text>
             </View>
@@ -88,29 +92,21 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
-        borderColor: 'red',
-        borderWidth: 5,
     },
     title: {
         flex: 1,
         justifyContent: 'center',
         width: "100%",
-        borderColor: 'blue',
-        borderWidth: 5,
     },
     meetingsList: {
         flex: 7,
         width: "100%",
-        borderColor: 'green',
-        borderWidth: 5,
     },
     footer: {
         flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
-        borderColor: 'yellow',
-        borderWidth: 5,
     },
     bookMeetingButton: {
         justifyContent: 'center',
@@ -152,17 +148,29 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignContent: 'center',
         backgroundColor: AppColours.purple,
+        borderRadius: 10,
+        padding: 10,
         margin: 2,
+    },
+    meetingCardTitle: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        color: 'white',
+        fontSize: 20,
+        lineHeight: 50,
     },
     meetingCardText: {
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
-        fontSize: 20,
+        fontSize: 18,
+        textAlign: 'right'
     },
     backButton: {
-        marginRight: 200,
-    }
+        borderLeftWidth: 10,
+        borderColor: '#FFFFFF',
+        marginRight: 'auto',
+    },
 
 });
 

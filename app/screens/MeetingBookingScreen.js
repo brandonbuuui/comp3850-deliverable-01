@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DataManager from '../config/DataManager';
 import {format} from 'date-fns'
+import {Ionicons} from'@expo/vector-icons';
 
 function MeetingBookingScreen({navigation}) {
     let data = DataManager.getInstance();
@@ -15,36 +16,48 @@ function MeetingBookingScreen({navigation}) {
       const filterPassedTime = (time) => {
         const currentDate = new Date();
         const selectedDate = new Date(time);
-    
         return currentDate.getTime() < selectedDate.getTime();
       };
 
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
-                <Text> Heading </Text>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("Profile")}
+                    style = {styles.profileButton}
+                >
+                    <Ionicons name='person-outline' size = '20'/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                >
+                    <Ionicons name='chevron-back-outline' size = '20'/>
+                </TouchableOpacity>
             </View>
             <View style = {styles.title}>
-                <Text> Title </Text>
+                <Text style={{fontSize: 40}}> Book A Meeting </Text>
             </View>
             <View style = {styles.calendar}>
-                <Text> Calendar </Text>
-                {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} inline /> */}
-                <DatePicker
-                    selected={startDate}
-                    onChange={(date) => {
-                        setStartDate(date)
-                    }}
-                    minDate={new Date()}
-                    showDisabledMonthNavigation
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    timeCaption="time"
-                    filterTime={filterPassedTime}
-                    dateFormat="MMMM d, yyyy h:mm"
-                    inline
-                />
+                <Text style={{fontSize:20}}> Meeting With ... </Text>
+                <View style={{justifyContent:'center', alignItems:'center', borderTopWidth:50, borderTopColor:'#FFFFFF'}}>
+                    <DatePicker
+                        selected={startDate}
+                        onChange={(date) => {
+                            setStartDate(date)
+                        }}
+                        minDate={new Date()}
+                        showDisabledMonthNavigation
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        timeCaption="time"
+                        filterTime={filterPassedTime}
+                        dateFormat="MMMM d, yyyy h:mm"
+                        inline
+                    />
+                </View>
+                
             </View>
             <View style = {styles.footer}>
                 <TouchableOpacity 
@@ -60,8 +73,6 @@ function MeetingBookingScreen({navigation}) {
                         } else {
                             const formattedDate = format(startDate, "d/MM/yyyy")
                             const formattedTime = format(startDate, "h:mmaaa")
-                            console.log(formattedDate)
-                            console.log(formattedTime)
                             data.addMeeting(formattedDate, formattedTime);
                         }
                     }}
@@ -87,32 +98,45 @@ const styles = StyleSheet.create ({
         alignItems: 'center'
     },
     header: {
-        flex: 1.5,
-        justifyContent: 'center',
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row-reverse',
         width: "100%",
-        borderColor: 'red',
-        borderWidth: 5,
+    },
+    profileButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 44/2,
+        backgroundColor: AppColours.lightblue,
+        marginRight: 5,
+    },
+    backButton: {
+        borderLeftWidth: 10,
+        borderColor: '#FFFFFF',
+        marginRight: 'auto',
     },
     title: {
         flex: 1,
         justifyContent: 'center',
         width: "100%",
-        borderColor: 'blue',
-        borderWidth: 5,
+        borderLeftWidth: 20, 
+        borderRightWidth:20, 
+        borderColor:'#FFFFFF',
     },
     calendar: {
         flex: 7,
         width: "100%",
-        borderColor: 'red',
-        borderWidth: 5
+        borderLeftWidth: 20, 
+        borderRightWidth:20, 
+        borderColor:'#FFFFFF',
     },
     footer: {
         flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
-        borderColor: 'yellow',
-        borderWidth: 5
     },
     bookButton: {
         justifyContent: 'center',
@@ -135,9 +159,6 @@ const styles = StyleSheet.create ({
         fontSize: 22,
         fontWeight: '600',
     },
-    blankTabNav: {
-        height: 48
-    }
 });
 
 export default MeetingBookingScreen;
