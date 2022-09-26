@@ -22,6 +22,7 @@ const StackNavigator = () => (
         <AppStack.Screen name="TabScreens" component={TabNavigator} options={{headerShown:false}}/>
         <AppStack.Screen name="Book" component={MeetingBookingScreen} options={{headerShown:false}}/>
         <AppStack.Screen name="Details" component={MeetingDetailsScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name="Confirmation" component={MeetingConfirmScreen} options={{headerShown:false}}/>
     </AppStack.Navigator>
 )
 

@@ -40,7 +40,9 @@ function MeetingBookingScreen({navigation}) {
                 <TouchableOpacity 
                     style = {styles.bookButton}
                     onPressOut = {() => {
-                        navigation.navigate("Meetings")
+                        navigation.navigate("Confirmation", {
+                            date: startDate
+                        })
                         if (data.meetings.length == 0) {
                             data.meetings = [{id: 0, date: startDate.toString()}];
                             data.meetingsCount++;

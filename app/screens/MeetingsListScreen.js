@@ -6,7 +6,7 @@ import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
-function MeetingsListScreen({route, navigation}) {
+function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
