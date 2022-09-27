@@ -27,7 +27,7 @@ function MeetingDetailsScreen({route, navigation}) {
                 <Text style={styles.titleText}>Meeting Details</Text>
             </View>
             <View style={styles.content}>
-            <View style={{flex:1, flexDirection:'row'}}>
+                <View style={{flex:1, flexDirection:'row'}}>
                     <Ionicons name='location-outline' size='medium' color='white'/>
                     <Text style={styles.contentText}>Location:</Text>
                 </View>

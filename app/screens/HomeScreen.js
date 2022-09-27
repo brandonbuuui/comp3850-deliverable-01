@@ -9,7 +9,6 @@ import {Ionicons} from '@expo/vector-icons'
 
 
 function HomeScreen({route, navigation}) {
-    //const {paramEmail, paramName, paramImage} = route.params.params.params
     const {params} = route.params;
     let data = DataManager.getInstance();
     data.setCurrUser(params.paramName.toString())
@@ -25,9 +24,13 @@ function HomeScreen({route, navigation}) {
                 <Text style={styles.welcomeText}>Hi {params.paramName.toString()}!</Text>
             </View>
             <View style = {styles.content}>
-                <Text>CONTENT HERE</Text>
+                    <Text style={{fontSize:25}}>Next Meeting</Text>
+                    <View style={styles.nextMeeting}></View>
+                    <Text style={{fontSize:25}}>Most Recent Survey</Text>   
+                    <View style={styles.nextSurvey}></View>         
+                    <Text style={{fontSize:25}}>News</Text>
+                    <View style={styles.news}></View>
             </View>
-            
         </View>
     );
 }
@@ -44,14 +47,53 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
-        borderColor: 'blue',
+        borderColor: '#FFFFFF',
         borderWidth: 5,
     },
     content: {
         flex: 7,
         width: "100%",
-        borderColor: 'red',
-        borderWidth: 5
+        borderColor: '#FFFFFF',
+        borderWidth: 5,
+    },
+    nextMeeting: {
+        flex: 2,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: AppColours.purple,
+        borderRadius: 10,
+        padding: 10,
+        // marginTop:90,
+        // marginBottom:100,
+        // marginLeft: 20,
+        // marginRight: 20
+    },
+    nextSurvey: {
+        flex: 2,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: AppColours.purple,
+        borderRadius: 10,
+        padding: 10,
+        // marginTop:90,
+        // marginBottom:100,
+        // marginLeft: 20,
+        // marginRight: 20
+    },
+    news: {
+        flex: 6,
+        width: "100%",
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: AppColours.purple,
+        borderRadius: 10,
+        padding: 10,
+        // marginTop:90,
+        // marginBottom:100,
+        // marginLeft: 20,
+        // marginRight: 20
     },
     profileButton: {
         justifyContent: 'center',
@@ -63,6 +105,7 @@ const styles = StyleSheet.create ({
         marginRight: 5,
     },
     welcomeText: {
+        fontSize: 30,
         marginRight: 'auto',
     }
 });

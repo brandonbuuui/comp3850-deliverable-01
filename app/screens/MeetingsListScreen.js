@@ -26,7 +26,7 @@ function MeetingsListScreen({navigation}) {
                     onPress={() => navigation.goBack()}
                     style={styles.backButton}
                 >
-                    <Ionicons name='chevron-back-outline' size = '20'/>
+                    <Ionicons name='chevron-back-outline' size = '20' marginRight='auto'/>
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
