@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
 
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 import DataManager from '../config/DataManager';
 import {format} from 'date-fns'
 import {Ionicons} from'@expo/vector-icons';

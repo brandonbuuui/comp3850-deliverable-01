@@ -8,6 +8,7 @@ import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import AppTextInput from '../components/AppTextInput';
 import DataManager from '../config/DataManager';
+import AppColours from '../config/AppColours';
 
 const blurRadiusValue = Platform.OS === 'android' ? 0.2 : 1.3
 
@@ -65,6 +66,7 @@ function LoginScreen({navigation}) {
                         width: 220
                         }}
                     source={require("../assets/MMLogo.png")}></Image>
+                    <AppText style={{color: AppColours.white, fontSize: 30, fontWeight: 'bold'}}>Mentoring's Men</AppText>
                 </View>
 
                 <Formik
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#262163',
     },
     mmLogo: {
-        marginTop: 50,
+        marginTop: 10,
         display: "flex",
         resizeMode: 'center',
         justifyContent: "center",

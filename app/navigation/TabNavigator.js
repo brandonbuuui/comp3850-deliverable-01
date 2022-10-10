@@ -39,7 +39,7 @@ const TabNavigator = () => (
                 
                 return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarStyle: { height: 60, backgroundColor: AppColours.lightblue },
+            tabBarStyle: { height: 80, backgroundColor: AppColours.lightblue },
             tabBarActiveBackgroundColor: '#51bae7',
             tabBarActiveTintColor: 'white',
             tabBarInactiveTintColor: 'white',
@@ -56,7 +56,7 @@ const TabNavigator = () => (
             },
         })}
         />
-        <AppTab.Screen name="Chat" component={ChatScreen} options={{headerShown:false}}/>
+        <AppTab.Screen name="Chat" size={100} component={ChatScreen} options={{headerShown:true}}/>
         <AppTab.Screen name="Survey" component={SurveyListScreen} options={{headerShown:false}}/>
     </AppTab.Navigator>
 )
