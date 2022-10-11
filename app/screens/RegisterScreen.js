@@ -7,6 +7,7 @@ import AppScreen from '../components/AppScreen';
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
+import DataManager from '../config/DataManager';
 
 const schema = Yup.object().shape(
     {
@@ -15,6 +16,8 @@ const schema = Yup.object().shape(
         password: Yup.string().required().max(50),
     }
 );
+
+let data = DataManager.getInstance();
 
 function RegisterScreen({navigation}) {
 
@@ -33,7 +36,10 @@ function RegisterScreen({navigation}) {
 
             <Formik
                 initialValues={{email:'', password: '', username: ''}}
-                onSubmit = {values => navigation.navigate("Login")}
+                onSubmit = {values => {
+                    data.addUser(values.email, values.password, values.username)
+                    navigation.navigate("Login")
+                }}
                 >
             {({handleChange, handleSubmit, errors, setFieldTouched, touched})=> (
                 <>

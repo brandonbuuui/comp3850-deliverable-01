@@ -36,21 +36,7 @@ const users = [
     },
 ];
 
-const validateUser = ({email, password}) => {
-    return(
-        users.filter((user) => user.email === email && user.password === password).length>0
-    )
-};
-
-const getUser = ({email}) => {
-    return users.find((user) => user.email === email);
-}
-
-const createUser = ({email}) => {
-    let commonData = DataManager.getInstance();
-    let userID = getUser({email}).id;
-    commonData.setUserID(userID);
-}
+let data = DataManager.getInstance();
 
 function LoginScreen({navigation}) {
 
@@ -72,24 +58,12 @@ function LoginScreen({navigation}) {
                 <Formik
                 initialValues={{email:'', password: '',}}
                 onSubmit = {(values, {resetForm}) => {
-                    if(validateUser(values)) {
-                        resetForm();
-                        createUser(values);
-                        navigation.navigate("TabScreens", {
-                            screen: "Home",
-                            params: {
-                                screen: "Home",
-                                params: {
-                                    paramEmail: values.email,
-                                    paramName: getUser(values).name,
-                                    paramImage: getUser(values).image,
-                                },
-                            }
-                        }
-                    );
-                    }
-                    else {
-                        resetForm();
+                    data.login(values.email, values.password);
+                    if (data.loggedIn) {
+                        resetForm()
+                        navigation.navigate("TabScreens")
+                    } else {
+                        resetForm()
                         alert("Invalid Login Details")
                     }
                 }}

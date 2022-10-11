@@ -24,8 +24,12 @@
     "react-datepicker": "^4.8.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
+<<<<<<< HEAD
     "react-native-document-picker": "^8.1.1",
     "react-native-fs": "^2.20.0",
+=======
+    "react-native-calendar-picker": "^7.1.2",
+>>>>>>> 9f289da1425160ed27e5d0e9d77c85eb7ea5bf73
     "react-native-gesture-handler": "~2.5.0",
     "react-native-haptic-feedback": "^1.14.0",
     "react-native-image-crop-picker": "^0.38.0",
