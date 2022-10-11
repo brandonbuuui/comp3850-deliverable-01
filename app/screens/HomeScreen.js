@@ -8,10 +8,10 @@ import {Ionicons} from '@expo/vector-icons'
 
 
 
-function HomeScreen({route, navigation}) {
-    const {params} = route.params;
+function HomeScreen({navigation}) {
     let data = DataManager.getInstance();
-    data.setCurrUser(params.paramName.toString())
+    let currUser = data.getCurrUser();
+    console.log(currUser.email)
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
@@ -19,10 +19,10 @@ function HomeScreen({route, navigation}) {
                     onPress={() => navigation.navigate("Profile")}>
                           <Image
                             style = {styles.profileButton}
-                            source={require("../assets/biglake.jpeg")}>
+                            source={currUser.image}>
                         </Image>
                 </TouchableOpacity>
-                <Text style={styles.welcomeText}>Hi {params.paramName.toString()}!</Text>
+                <Text style={styles.welcomeText}>Hi {currUser.name}!</Text>
             </View>
             <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Upcoming Meetings</Text>

@@ -52,6 +52,8 @@ const createUser = ({email}) => {
     commonData.setUserID(userID);
 }
 
+let data = DataManager.getInstance();
+
 function LoginScreen({navigation}) {
 
     return (
@@ -72,26 +74,34 @@ function LoginScreen({navigation}) {
                 <Formik
                 initialValues={{email:'', password: '',}}
                 onSubmit = {(values, {resetForm}) => {
-                    if(validateUser(values)) {
-                        resetForm();
-                        createUser(values);
-                        navigation.navigate("TabScreens", {
-                            screen: "Home",
-                            params: {
-                                screen: "Home",
-                                params: {
-                                    paramEmail: values.email,
-                                    paramName: getUser(values).name,
-                                    paramImage: getUser(values).image,
-                                },
-                            }
-                        }
-                    );
-                    }
-                    else {
-                        resetForm();
+                    data.login(values.email, values.password);
+                    if (data.loggedIn) {
+                        resetForm()
+                        navigation.navigate("TabScreens")
+                    } else {
+                        resetForm()
                         alert("Invalid Login Details")
                     }
+                    // if(validateUser(values)) {
+                    //     resetForm();
+                    //     createUser(values);
+                    //     navigation.navigate("TabScreens", {
+                    //         screen: "Home",
+                    //         params: {
+                    //             screen: "Home",
+                    //             params: {
+                    //                 paramEmail: values.email,
+                    //                 paramName: getUser(values).name,
+                    //                 paramImage: getUser(values).image,
+                    //             },
+                    //         }
+                    //     }
+                    // );
+                    // }
+                    // else {
+                    //     resetForm();
+                    //     alert("Invalid Login Details")
+                    // }
                 }}
                 validationSchema={schema}
             >

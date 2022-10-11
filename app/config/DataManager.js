@@ -2,7 +2,8 @@ export default class DataManager {
     static myInstance = null;
     userID = "";
     meetingsCount = 1;
-    currUser = []
+    currUser = [];
+    loggedIn = false;
 
     photos = [
         {
@@ -88,11 +89,14 @@ export default class DataManager {
         return this.currUser
     }
 
-    setCurrUser(name) {
+    login(email, password) {
         this.users.forEach(e => {
-            if (e.name == name) {
+            if (e.email == email && e.password == password) {
                 this.currUser = e;
+                this.loggedIn = true;
             }
         })
     }
+
+
 }
