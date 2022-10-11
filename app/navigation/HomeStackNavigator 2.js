@@ -17,7 +17,7 @@ const AppStack = createStackNavigator();
 const StackNavigator = () => (
     <AppStack.Navigator>
         <AppStack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name="Profile" component={ProfileScreen} options={{headerShown:true}}/>
     </AppStack.Navigator>
 )
 
