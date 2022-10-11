@@ -42,12 +42,14 @@ export default class DataManager {
             id: "user1",
             name:"Winter Soldier",
             email:"winter.soldier@gmail.com",
+            username: "winter.soldier",
             password:"1922",
             image: require('../public/bucky.jpg')
         },
         {
             id: "user2",
             name:"Steve Rogers",
+            username: 'steve.rogers',
             email:"captain.steve@yahoo.com",
             password:"1945",
             image: require('../assets/cap.jpeg')
@@ -95,6 +97,15 @@ export default class DataManager {
                 this.currUser = e;
                 this.loggedIn = true;
             }
+        })
+    }
+
+    addUser(email, password, username) {
+        this.users.push({
+            id: this.users.length,
+            username: username,
+            email: email,
+            password: password
         })
     }
 

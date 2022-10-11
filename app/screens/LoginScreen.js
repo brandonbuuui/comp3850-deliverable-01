@@ -36,22 +36,6 @@ const users = [
     },
 ];
 
-const validateUser = ({email, password}) => {
-    return(
-        users.filter((user) => user.email === email && user.password === password).length>0
-    )
-};
-
-const getUser = ({email}) => {
-    return users.find((user) => user.email === email);
-}
-
-const createUser = ({email}) => {
-    let commonData = DataManager.getInstance();
-    let userID = getUser({email}).id;
-    commonData.setUserID(userID);
-}
-
 let data = DataManager.getInstance();
 
 function LoginScreen({navigation}) {
@@ -82,26 +66,6 @@ function LoginScreen({navigation}) {
                         resetForm()
                         alert("Invalid Login Details")
                     }
-                    // if(validateUser(values)) {
-                    //     resetForm();
-                    //     createUser(values);
-                    //     navigation.navigate("TabScreens", {
-                    //         screen: "Home",
-                    //         params: {
-                    //             screen: "Home",
-                    //             params: {
-                    //                 paramEmail: values.email,
-                    //                 paramName: getUser(values).name,
-                    //                 paramImage: getUser(values).image,
-                    //             },
-                    //         }
-                    //     }
-                    // );
-                    // }
-                    // else {
-                    //     resetForm();
-                    //     alert("Invalid Login Details")
-                    // }
                 }}
                 validationSchema={schema}
             >
