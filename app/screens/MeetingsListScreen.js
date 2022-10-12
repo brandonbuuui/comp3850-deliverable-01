@@ -11,8 +11,6 @@ function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
-    console.log(data.getCurrUser().image);
-
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
@@ -112,7 +110,7 @@ const styles = StyleSheet.create ({
     bookMeetingButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: "5px",
+        margin: 5,
         backgroundColor: AppColours.lightblue,
         width: 300,
         height: 44,
