@@ -44,13 +44,39 @@ function RegisterScreen({navigation}) {
             {({handleChange, handleSubmit, errors, setFieldTouched, touched})=> (
                 <>
                  <View style={styles.inputContainer}>
+                 <AppTextInput
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="account" 
+                        placeholder="First Name"
+                        placeholderTextColor="#BFB7B7"
+                        textContentType="name-given"
+                        onChangeText =  {handleChange('name-given')}
+                        onBlur = {() => setFieldTouched('name-given')}
+                        />
+                        {touched.username && <AppText style={{color:'red'}}>
+                                {errors.username}
+                        </AppText>}
+                        <AppTextInput
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="account" 
+                        placeholder="Last Name"
+                        placeholderTextColor="#BFB7B7"
+                        textContentType="name-family"
+                        onChangeText =  {handleChange('name-family')}
+                        onBlur = {() => setFieldTouched('name-family')}
+                        />
+                        {touched.username && <AppText style={{color:'red'}}>
+                                {errors.username}
+                        </AppText>}
                     <AppTextInput
                         autoCapitalize="none"
                         autoCorrect={false}
                         icon="account" 
                         placeholder="Create your username"
                         placeholderTextColor="#BFB7B7"
-                        textContentType="emailAddress"
+                        textContentType="username"
                         onChangeText =  {handleChange('username')}
                         onBlur = {() => setFieldTouched('username')}
                         />
@@ -123,7 +149,7 @@ const styles = StyleSheet.create({
         marginTop: 70,
     },
     registerButton: {
-        marginTop: 150,
+        marginTop: 40,
         width: '68%',
         alignSelf: 'center',
     }

@@ -26,7 +26,7 @@ function HomeScreen({navigation}) {
             <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Upcoming Meetings</Text>
                     <View style={styles.nextMeeting}>
-                        <Text style={{fontSize:18, color: AppColours.white}}>Casual Meet</Text>
+                    <Text style={{fontSize:18, color: AppColours.white}}>Casual Meet</Text>
                     </View>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Most Recent Survey</Text>   
                     <View style={styles.nextSurvey}></View>         
