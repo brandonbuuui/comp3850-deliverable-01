@@ -1,19 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import StackNavigator from './StackNavigator';
 import { Ionicons } from '@expo/vector-icons';
 
-import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import HomeScreen from '../screens/HomeScreen';
-import MeetingsListScreen from '../screens/MeetingsListScreen';
-import MeetingBookingScreen from '../screens/MeetingBookingScreen';
-import MeetingConfirmScreen from '../screens/MeetingConfirmScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import ChatScreen from '../screens/ChatScreen';
 import SurveyListScreen from '../screens/SurveyListScreen';
-import MeetingDetailsScreen from '../screens/SurveyListScreen';
 
 import HomeStackNavigator from '../navigation/HomeStackNavigator'
 import MeetingsStackNavigator from '../navigation/MeetingsStackNavigator'
@@ -48,7 +38,13 @@ const TabNavigator = () => (
     
     
     >
-        <AppTab.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+        <AppTab.Screen name="Home" component={HomeStackNavigator} options={{headerShown:false}}
+        listeners={({ navigation }) => ({
+            tabPress: e => {
+                navigation.navigate('Home');
+            },
+        })}
+        />
         <AppTab.Screen name="Meetings" component={MeetingsStackNavigator} options={{headerShown:false}}
         listeners={({ navigation }) => ({
             tabPress: e => {

@@ -11,7 +11,6 @@ import {Ionicons} from '@expo/vector-icons'
 function HomeScreen({navigation}) {
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>

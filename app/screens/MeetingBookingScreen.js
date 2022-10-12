@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
+<<<<<<< HEAD
 import Constants from 'expo-constants';
 
 import DatePicker from "react-datepicker";
+=======
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+>>>>>>> 4c721577e9d558ee8e1a5003fa05681e231f6363
 import DataManager from '../config/DataManager';
 import {format} from 'date-fns'
 import {Ionicons} from'@expo/vector-icons';
 
 function MeetingBookingScreen({navigation}) {
     let data = DataManager.getInstance();
-    const [startDate, setStartDate] = useState(new Date());
-      const filterPassedTime = (time) => {
-        const currentDate = new Date();
-        const selectedDate = new Date(time);
-        return currentDate.getTime() < selectedDate.getTime();
-      };
+    const [date, setDate] = useState(null);
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const handleConfirm = (date) => {
+        console.warn("A date has been picked: ", date);
+        setDate(date)
+        hideDatePicker();
+    };
 
     return (
         <View style = {styles.container}>
@@ -38,42 +50,34 @@ function MeetingBookingScreen({navigation}) {
             <View style = {styles.title}>
                 <Text style={{fontSize: 40}}> Book A Meeting </Text>
             </View>
-            <View style = {styles.calendar}>
-                <Text style={{fontSize:20}}> Meeting With ... </Text>
-                <View style={{justifyContent:'center', alignItems:'center', borderTopWidth:50, borderTopColor:'#FFFFFF'}}>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={(date) => {
-                            setStartDate(date)
-                        }}
-                        minDate={new Date()}
-                        showDisabledMonthNavigation
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={15}
-                        timeCaption="time"
-                        filterTime={filterPassedTime}
-                        dateFormat="MMMM d, yyyy h:mm"
-                        inline
-                    />
-                </View>
-                
+
+            <View style={styles.calendar}>
+                <Button title="Show Date Picker" onPress={showDatePicker} />
+                <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="datetime"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                />
             </View>
+
             <View style = {styles.footer}>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style = {styles.bookButton}
                     onPressOut = {() => {
-                        navigation.navigate("Confirmation", {
-                            date: format(startDate, "d/MM/yyyy"),
-                            time: format(startDate, "h:mmaaa")
-                        })
-                        if (data.meetings.length == 0) {
-                            data.meetings = [{id: 0, date: startDate.toString()}];
-                            data.meetingsCount++;
-                        } else {
-                            const formattedDate = format(startDate, "d/MM/yyyy")
-                            const formattedTime = format(startDate, "h:mmaaa")
-                            data.addMeeting(formattedDate, formattedTime);
+                        if (date != null) {
+                            navigation.navigate("Confirmation", {
+                                date: format(date, "d/MM/yyyy"),
+                                time: format(date, "h:mmaaa")
+                            })
+                            const formattedDate = format(date, "d/MM/yyyy")
+                            const formattedTime = format(date, "h:mmaaa")
+                            if (data.meetings.length == 0) {
+                                data.meetings = [{id: 0, date: formattedDate, time: formattedTime}];
+                                data.meetingsCount++;
+                            } else {
+                                data.addMeeting(formattedDate, formattedTime);
+                            }
                         }
                     }}
                 >

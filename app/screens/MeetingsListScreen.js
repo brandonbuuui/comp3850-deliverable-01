@@ -12,12 +12,15 @@ function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
+<<<<<<< HEAD
     console.log(data.getCurrUser().image);
 
     let dataUser = DataManager.getInstance();
     let currUser = data.getCurrUser();
     console.log(currUser.email)
 
+=======
+>>>>>>> 4c721577e9d558ee8e1a5003fa05681e231f6363
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
