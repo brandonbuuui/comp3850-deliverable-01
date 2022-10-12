@@ -5,7 +5,8 @@ import DataManager from '../config/DataManager';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import {Ionicons} from '@expo/vector-icons'
+import {Ionicons} from '@expo/vector-icons';
+import Constants from 'expo-constants';
 
 function MeetingsListScreen({navigation}) {
 
@@ -13,20 +14,25 @@ function MeetingsListScreen({navigation}) {
     let meetings = data.getMeetings();
     console.log(data.getCurrUser().image);
 
+    let dataUser = DataManager.getInstance();
+    let currUser = data.getCurrUser();
+    console.log(currUser.email)
+
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("Profile")}
-                    style = {styles.profileButton}
-                >
-                    <Ionicons name='person-outline' size = '20'/>
+                    onPress={() => navigation.navigate("Profile")}>
+                        <Image
+                            style = {styles.profileButton}
+                            source={currUser.image}>
+                        </Image>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={styles.backButton}
                 >
-                    <Ionicons name='chevron-back-outline' size = '20' marginRight='auto'/>
+                    <Ionicons name='chevron-back-outline' size = '40' marginRight='auto'/>
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
@@ -35,7 +41,7 @@ function MeetingsListScreen({navigation}) {
                 </Text>
             </View>
             <View style = {styles.meetingsList}>
-                <Text style={{fontSize:20,borderWidth:20, borderColor:'#FFFFFF'}}>
+                <Text style={{fontSize:22,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Upcoming Meetings
                 </Text>
                 <FlatList
@@ -65,7 +71,7 @@ function MeetingsListScreen({navigation}) {
                 />
             </View>
             <View style = {styles.meetingsList}>
-                <Text style={{fontSize:20,borderWidth:20, borderColor:'#FFFFFF'}}>
+                <Text style={{fontSize:22,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Previous Meetings
                 </Text>
             </View>
@@ -86,25 +92,25 @@ const styles = StyleSheet.create ({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     header: {
-        flex: 1.5,
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
+        marginTop: Constants.statusBarHeight,
+        justifyContent: 'space-between',
     },
     title: {
-        flex: 1,
         justifyContent: 'center',
         width: "100%",
     },
     meetingsList: {
-        flex: 7,
         width: "100%",
     },
     footer: {
         flex: 1.5,
+        marginTop: 350,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
@@ -112,7 +118,7 @@ const styles = StyleSheet.create ({
     bookMeetingButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: "5px",
+        margin: 5,
         backgroundColor: AppColours.lightblue,
         width: 300,
         height: 44,
@@ -133,11 +139,12 @@ const styles = StyleSheet.create ({
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 44,
-        height: 44,
-        borderRadius: 44/2,
-        backgroundColor: AppColours.lightblue,
-        marginRight: 5,
+        height: 64, 
+        width: 64, 
+        borderRadius: 75, 
+        marginHorizontal: 20,
+        borderColor: AppColours.lightblue, 
+        borderWidth: 5
     },
     item: {
         padding: 10,
@@ -159,6 +166,7 @@ const styles = StyleSheet.create ({
         color: 'white',
         fontSize: 20,
         lineHeight: 50,
+        marginLeft: 10
     },
     meetingCardText: {
         justifyContent: 'center',

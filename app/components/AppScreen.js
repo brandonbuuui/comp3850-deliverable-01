@@ -1,13 +1,14 @@
 import React from 'react';
-import {SafeAreaView, View, StyleSheet} from 'react-native'; 
+import {View, StyleSheet} from 'react-native'; 
+import Constants from 'expo-constants';
 
 function AppScreen({children, style}) {
     return (
-        <SafeAreaView style={[styles.screen, style]}>
+        <View style={[styles.screen, style]}>
             <View style={styles.paddingView}> 
                 {children}
             </View>
-        </SafeAreaView>
+        </View>
     );
 }
 

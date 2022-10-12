@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     text: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: '600',
         color: 'white'
     }

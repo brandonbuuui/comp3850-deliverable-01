@@ -3,15 +3,17 @@ import { NavigationContainer, NavigationHelpersContext } from '@react-navigation
 import { View, StyleSheet, Text, Image } from 'react-native';
 import DataManager from '../config/DataManager';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
 
 import AppColours from '../config/AppColours';
+import AppScreen from '../components/AppScreen';
 
 function SurveyListScreen({navigation}) {
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
     console.log(currUser.email)
     return (
-        <View style = {styles.container}>
+        <AppScreen style = {styles.container}>
              <View style = {styles.header}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate("Profile")}>
@@ -27,7 +29,7 @@ function SurveyListScreen({navigation}) {
                 </View>
                 <View style={styles.surveyLists}></View>
             </View>
-        </View>
+        </AppScreen>
     );
 }
 
@@ -37,6 +39,7 @@ const styles = StyleSheet.create ({
         backgroundColor: '#fff',
     },
     profileButton: {
+        marginTop: Constants.statusBarHeight,
         justifyContent: 'center',
         alignItems: 'center',
         height: 64, 

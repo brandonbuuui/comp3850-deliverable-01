@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground, Platform, Image, Text } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Constants from 'expo-constants';
 
 import AppScreen from '../components/AppScreen';
 import AppText from '../components/AppText';
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#262163',
     },
     mmLogo: {
-        marginTop: 10,
+        marginTop: Constants.statusBarHeight,
         display: "flex",
         resizeMode: 'center',
         justifyContent: "center",

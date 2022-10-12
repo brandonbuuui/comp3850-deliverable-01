@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
+import Constants from 'expo-constants';
 
 import DatePicker from "react-datepicker";
 import DataManager from '../config/DataManager';
@@ -94,7 +95,7 @@ const styles = StyleSheet.create ({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     header: {
         flex: 1,
@@ -140,7 +141,7 @@ const styles = StyleSheet.create ({
     bookButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: "5px",
+        margin: 5,
         backgroundColor: AppColours.lightblue,
         width: 300,
         height: 44,

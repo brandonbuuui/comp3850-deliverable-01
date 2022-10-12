@@ -57,7 +57,7 @@ const TabNavigator = () => (
         })}
         />
         <AppTab.Screen name="Chat" size={100} component={ChatScreen} options={{headerShown:true}}/>
-        <AppTab.Screen name="Survey" component={SurveyListScreen} options={{headerShown:true}}/>
+        <AppTab.Screen name="Survey" component={SurveyListScreen} options={{headerShown:false}}/>
     </AppTab.Navigator>
 )
 

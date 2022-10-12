@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import Constants from 'expo-constants';
 
 import AppScreen from '../components/AppScreen';
 import AppTextInput from '../components/AppTextInput';
@@ -25,7 +26,8 @@ function RegisterScreen({navigation}) {
         <AppScreen style={styles.container}>
             <ImageBackground
                 style={styles.background}>
-
+            
+            <View style={styles.introContainer}>
             <AppText style={styles.titleMsg}>
                     Getting Started
             </AppText>
@@ -33,7 +35,7 @@ function RegisterScreen({navigation}) {
             <AppText style={styles.introMsg}>
                     Create an account to continue
             </AppText>
-
+            </View>
             <Formik
                 initialValues={{email:'', password: '', username: ''}}
                 onSubmit = {values => {
@@ -54,9 +56,7 @@ function RegisterScreen({navigation}) {
                         onChangeText =  {handleChange('name-given')}
                         onBlur = {() => setFieldTouched('name-given')}
                         />
-                        {touched.username && <AppText style={{color:'red'}}>
-                                {errors.username}
-                        </AppText>}
+                        {touched.username}
                         <AppTextInput
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -67,9 +67,7 @@ function RegisterScreen({navigation}) {
                         onChangeText =  {handleChange('name-family')}
                         onBlur = {() => setFieldTouched('name-family')}
                         />
-                        {touched.username && <AppText style={{color:'red'}}>
-                                {errors.username}
-                        </AppText>}
+                        {touched.username}
                     <AppTextInput
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -80,9 +78,7 @@ function RegisterScreen({navigation}) {
                         onChangeText =  {handleChange('username')}
                         onBlur = {() => setFieldTouched('username')}
                         />
-                        {touched.username && <AppText style={{color:'red'}}>
-                                {errors.username}
-                        </AppText>}
+                        {touched.username}
                 <AppTextInput
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -94,9 +90,7 @@ function RegisterScreen({navigation}) {
                     onBlur = {() => setFieldTouched('email')}
                     onChangeText =  {handleChange('email')}
                     />
-                    {touched.email && <AppText style={{color:'red'}}>
-                            {errors.email}
-                        </AppText>}
+                    {touched.email}
                 <AppTextInput 
                     icon="lock" 
                     placeholder="Create your password" 
@@ -107,9 +101,7 @@ function RegisterScreen({navigation}) {
                     onChangeText = {handleChange('password')}
                     onBlur = {() => setFieldTouched('password')}
                     />
-                    {touched.password && <AppText style={{color:'red'}}>
-                            {errors.password}
-                        </AppText>}
+                    {touched.password}
             </View>
             <View style={styles.registerButton}>
                  <AppButton
@@ -128,6 +120,9 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         backgroundColor: '#262163',
+    },
+    introContainer: {
+        marginTop: Constants.statusBarHeight,
     },
     titleMsg: {
         color: "#ffff",

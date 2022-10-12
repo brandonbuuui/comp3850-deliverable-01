@@ -1,26 +1,36 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import AppColours from '../config/AppColours';
 import {Ionicons} from'@expo/vector-icons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
+
+import DataManager from '../config/DataManager';
 
 function MeetingDetailsScreen({route, navigation}) {
+
+    let data = DataManager.getInstance();
+    let currUser = data.getCurrUser();
+    console.log(currUser.email)
+
     const {date, time} = route.params
+
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Profile")}
-                    style = {styles.profileButton}
-                >
-                    <Ionicons name='person-outline' size = '20'/>
+              <TouchableOpacity
+                    onPress={() => navigation.navigate("Profile")}>
+                        <Image
+                            style = {styles.profileButton}
+                            source={currUser.image}>
+                        </Image>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={styles.backButton}
                 >
-                    <Ionicons name='chevron-back-outline' size = '20'/>
+                    <Ionicons name='chevron-back-outline' size = '40' marginRight='auto'/>
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
@@ -40,7 +50,7 @@ function MeetingDetailsScreen({route, navigation}) {
                     <Text style={styles.contentText}>Time: {time.toString()}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
-                    <Ionicons name='pencil-outline' size='large' color='white' marginRight='10px'/>
+                    <Ionicons name='pencil-outline' size='large' color='white' marginRight='10'/>
                     <Text style={styles.contentText}>Description:</Text>
                 </View>
             </View>
@@ -58,15 +68,13 @@ const styles = StyleSheet.create ({
         alignItems: 'center'
     },
     header: {
-        flex: 1.5,
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
-        borderColor: '#FFFFFF',
-        borderWidth: 5,
+        marginTop: Constants.statusBarHeight,
+        justifyContent: 'space-between',
     },
     title: {
-        flex: 1,
         justifyContent: 'center',
         width: "100%",
         borderColor: '#FFFFFF',
@@ -97,11 +105,12 @@ const styles = StyleSheet.create ({
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 44,
-        height: 44,
-        borderRadius: 44/2,
-        backgroundColor: AppColours.lightblue,
-        marginRight: 5,
+        height: 64, 
+        width: 64, 
+        borderRadius: 75, 
+        marginHorizontal: 20,
+        borderColor: AppColours.lightblue, 
+        borderWidth: 5
     },
     backButton: {
         marginRight: 'auto',

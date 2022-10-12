@@ -44,7 +44,7 @@ const styles = StyleSheet.create ({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: "5px",
+        margin: 5,
         backgroundColor: AppColours.lightblue,
         width: 300,
         height: 44,
