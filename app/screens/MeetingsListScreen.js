@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Button, Image } from 'react-native';
+import { View, StyleSheet, Text, Button, Image, ScrollView } from 'react-native';
 import DataManager from '../config/DataManager';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
@@ -12,17 +12,17 @@ function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
-<<<<<<< HEAD
+
     console.log(data.getCurrUser().image);
 
     let dataUser = DataManager.getInstance();
     let currUser = data.getCurrUser();
     console.log(currUser.email)
 
-=======
->>>>>>> 4c721577e9d558ee8e1a5003fa05681e231f6363
     return (
+        <ScrollView showsHorizontalScrollIndicator={true}>
         <View style = {styles.container}>
+
             <View style = {styles.header}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate("Profile")}>
@@ -87,6 +87,7 @@ function MeetingsListScreen({navigation}) {
                 </TouchableOpacity> 
             </View>
         </View>
+        </ScrollView>
     );
 }
 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
-        marginTop: Constants.statusBarHeight,
+        marginTop: Constants.statusBarHeight+10,
         justifyContent: 'space-between',
     },
     title: {
@@ -131,6 +132,7 @@ const styles = StyleSheet.create ({
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.3,
         shadowRadius: 3,
+        marginBottom: 20
     },
     buttonText: {
         justifyContent: 'center',

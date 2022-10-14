@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Button, TouchableOpacity, Image } from 'react-native';
 import AppColours from '../config/AppColours';
-<<<<<<< HEAD
+
 import Constants from 'expo-constants';
 
 import DatePicker from "react-datepicker";
-=======
+
 import DateTimePickerModal from "react-native-modal-datetime-picker";
->>>>>>> 4c721577e9d558ee8e1a5003fa05681e231f6363
 import DataManager from '../config/DataManager';
 import {format} from 'date-fns'
 import {Ionicons} from'@expo/vector-icons';
@@ -31,24 +30,29 @@ function MeetingBookingScreen({navigation}) {
         hideDatePicker();
     };
 
+    let dataUser = DataManager.getInstance();
+    let currUser = data.getCurrUser();
+    console.log(currUser.email)
+
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("Profile")}
-                    style = {styles.profileButton}
-                >
-                    <Ionicons name='person-outline' size = '20'/>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={styles.backButton}
-                >
-                    <Ionicons name='chevron-back-outline' size = '20'/>
+                        onPress={() => navigation.navigate("Profile")}>
+                            <Image
+                                style = {styles.profileButton}
+                                source={currUser.image}>
+                            </Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={styles.backButton}
+                    >
+                        <Ionicons name='chevron-back-outline' size = '40' marginRight='auto'/>
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
-                <Text style={{fontSize: 40}}> Book A Meeting </Text>
+                <Text style={{fontSize: 40, fontWeight: '500'}}> Book A Meeting </Text>
             </View>
 
             <View style={styles.calendar}>
@@ -102,24 +106,26 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
     },
     header: {
-        flex: 1,
         alignItems: 'center',
         flexDirection: 'row-reverse',
         width: "100%",
+        marginTop: Constants.statusBarHeight+10,
+        justifyContent: 'space-between'
     },
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 44,
-        height: 44,
-        borderRadius: 44/2,
-        backgroundColor: AppColours.lightblue,
-        marginRight: 5,
+        height: 64, 
+        width: 64, 
+        borderRadius: 75, 
+        marginHorizontal: 20,
+        borderColor: AppColours.lightblue, 
+        borderWidth: 5
     },
     backButton: {
         borderLeftWidth: 10,
         borderColor: '#FFFFFF',
-        marginRight: 'auto',
+        marginLeft:10,
     },
     title: {
         flex: 1,
@@ -128,6 +134,7 @@ const styles = StyleSheet.create ({
         borderLeftWidth: 20, 
         borderRightWidth:20, 
         borderColor:'#FFFFFF',
+        fontWeight: '500'
     },
     calendar: {
         flex: 7,
@@ -141,6 +148,7 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
+        marginBottom: 30
     },
     bookButton: {
         justifyContent: 'center',

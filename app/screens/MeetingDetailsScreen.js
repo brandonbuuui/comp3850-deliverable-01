@@ -36,21 +36,33 @@ function MeetingDetailsScreen({route, navigation}) {
             <View style = {styles.title}>
                 <Text style={styles.titleText}>Meeting Details</Text>
             </View>
+            <View style={styles.meetInfo}>
+                <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <View style={styles.meetContent}>
+                        <Text style={styles.meetText1}>Casual Meet</Text>
+                        <Text style={styles.meetText2}>and You</Text>
+                    </View>
+                    <Image
+                            style = {styles.mentee}
+                            source={currUser.image}>
+                    </Image>
+                </View>
+            </View>
             <View style={styles.content}>
                 <View style={{flex:1, flexDirection:'row'}}>
-                    <Ionicons name='location-outline' size='medium' color='white'/>
-                    <Text style={styles.contentText}>Location:</Text>
+                    <Ionicons name='location-outline' size={30} color='white'/>
+                    <Text style={styles.contentText}>Location: </Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
-                <Ionicons name='calendar-outline' size='medium' color='white'/>
+                <Ionicons name='calendar-outline' size={30} color='white'/>
                     <Text style={styles.contentText}>Date: {date.toString()}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
-                <Ionicons name='time-outline' size='medium' color='white'/>
+                <Ionicons name='time-outline' size={30} color='white'/>
                     <Text style={styles.contentText}>Time: {time.toString()}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
-                    <Ionicons name='pencil-outline' size='large' color='white' marginRight='10'/>
+                    <Ionicons name='pencil-outline' size={30} color='white' marginRight='10'/>
                     <Text style={styles.contentText}>Description:</Text>
                 </View>
             </View>
@@ -83,24 +95,55 @@ const styles = StyleSheet.create ({
     },
     titleText: {
         fontSize: 40,
+        marginLeft: 10
     },
-    content: {
-        flex: 15.5,
-        width: "100%",
+    meetInfo: {
+        flex: 1,
+        width: "95%",
         justifyContent: 'center',
         alignContent: 'center',
         backgroundColor: AppColours.purple,
         borderRadius: 10,
         padding: 10,
-        marginTop:90,
-        marginBottom:100,
-        marginLeft: 20,
-        marginRight: 20
+        marginTop: 20,
+    },
+    meetText1: {
+        fontSize: 23,
+        color: 'white',
+        marginLeft: 10,
+        fontWeight: '500',
+        marginTop: 10
+    },
+    meetText2: {
+        fontSize: 18,
+        color: 'white',
+        marginLeft: 10,
+        fontWeight: '500',
+        marginVertical: 10
+    },
+    mentee: {
+        height: 65, 
+        width: 65, 
+        borderRadius: 75,
+        marginTop: 10
+    },
+    content: {
+        flex: 5,
+        width: "95%",
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: AppColours.purple,
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 60,
+        marginTop: 60
     },
     contentText: {
         fontSize: 25,
         color: 'white',
         textDecorationLine: 'underline',
+        marginLeft: 20,
+        fontWeight: '500'
     },
     profileButton: {
         justifyContent: 'center',
