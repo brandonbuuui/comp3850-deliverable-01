@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import Constants from 'expo-constants';
@@ -9,6 +9,7 @@ import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 import DataManager from '../config/DataManager';
+import AppColours from '../config/AppColours';
 
 const schema = Yup.object().shape(
     {
@@ -26,7 +27,14 @@ function RegisterScreen({navigation}) {
         <AppScreen style={styles.container}>
             <ImageBackground
                 style={styles.background}>
-            
+                <View style={styles.mmLogo}>
+                        <Image 
+                        style={{
+                            height: 50,
+                            width: 50
+                            }}
+                        source={require("../assets/MMLogo.png")}></Image>
+                </View>
             <View style={styles.introContainer}>
             <AppText style={styles.titleMsg}>
                     Getting Started
@@ -124,9 +132,16 @@ const styles = StyleSheet.create({
     introContainer: {
         marginTop: Constants.statusBarHeight,
     },
+    mmLogo: {
+        marginTop: Constants.statusBarHeight,
+        display: "flex",
+        resizeMode: 'center',
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    },
     titleMsg: {
         color: "#ffff",
-        marginTop: 30,
         marginLeft: 10,
         fontSize: 40,
         fontWeight: '900',
@@ -141,7 +156,7 @@ const styles = StyleSheet.create({
         textAlign: 'left', 
     },
     inputContainer: {
-        marginTop: 70,
+        marginTop: 50,
     },
     registerButton: {
         marginTop: 40,

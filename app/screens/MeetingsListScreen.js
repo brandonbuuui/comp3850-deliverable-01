@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Button, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import DataManager from '../config/DataManager';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
@@ -39,12 +39,12 @@ function MeetingsListScreen({navigation}) {
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
-                <Text style={{fontSize: 40, borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF'}}>
+                <Text style={{fontSize: 40, borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF', marginTop: 15}}>
                     Meetings List
                 </Text>
             </View>
             <View style = {styles.meetingsList}>
-                <Text style={{fontSize:22,borderWidth:20, borderColor:'#FFFFFF'}}>
+                <Text style={{fontSize:25,borderWidth:20, borderColor:'#FFFFFF', marginBottom: 15}}>
                     Upcoming Meetings
                 </Text>
                 <FlatList
@@ -60,21 +60,32 @@ function MeetingsListScreen({navigation}) {
                                 })}
                             >
                                 <Text style = {styles.meetingCardTitle}>
-                                    Meeting
+                                   Casual Meet
                                 </Text>
-                                <Text style = {styles.meetingCardText}>
-                                    {item.date}
+                                <Text style={{fontSize:20, marginLeft: 20, color: 'white', marginBottom: 15, fontWeight: '500'}}>
+                                    .. and you
                                 </Text>
-                                <Text style = {styles.meetingCardText}>
-                                    {item.time}
-                                </Text>
+                                <View style={styles.meettingDetails}>
+                                    <Image
+                                        style = {styles.mentee}
+                                        source={currUser.image}>
+                                    </Image>
+                                    <View style={styles.cardText}>
+                                        <Text style = {styles.meetingCardText}>
+                                            {item.date}
+                                        </Text>
+                                        <Text style = {styles.meetingCardText}>
+                                            {item.time}
+                                        </Text>
+                                    </View>
+                                </View>
                             </TouchableOpacity>
 
                     }
                 />
             </View>
             <View style = {styles.meetingsList}>
-                <Text style={{fontSize:22,borderWidth:20, borderColor:'#FFFFFF'}}>
+                <Text style={{fontSize:25,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Previous Meetings
                 </Text>
             </View>
@@ -124,9 +135,9 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         margin: 5,
         backgroundColor: AppColours.lightblue,
-        width: 300,
-        height: 44,
-        borderRadius: 44/2,
+        width: 250,
+        height: 50,
+        borderRadius: 15,
         alignSelf: 'center',
         shadowColor: AppColours.black,
         shadowOffset: {width: -2, height: 4},
@@ -138,14 +149,14 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
-        fontSize: 22,
+        fontSize: 25,
         fontWeight: '600',
     }, 
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 64, 
-        width: 64, 
+        height: 80, 
+        width: 80, 
         borderRadius: 75, 
         marginHorizontal: 20,
         borderColor: AppColours.lightblue, 
@@ -162,23 +173,39 @@ const styles = StyleSheet.create ({
         alignContent: 'center',
         backgroundColor: AppColours.purple,
         borderRadius: 10,
-        padding: 10,
+        paddingRight: 10,
+        paddingBottom:10,
         margin: 2,
+        marginBottom: 10
     },
     meetingCardTitle: {
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
-        fontSize: 20,
+        fontSize: 22,
         lineHeight: 50,
-        marginLeft: 10
+        marginLeft: 20,
+        fontWeight: '500'
+    },
+    meettingDetails: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        width: "100%",
+        justifyContent: 'space-between',
+    },
+    mentee: {
+        height: 55, 
+        width: 55, 
+        borderRadius: 75,
+        marginLeft: 20
     },
     meetingCardText: {
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
         fontSize: 18,
-        textAlign: 'right'
+        textAlign: 'right',  
+        marginRight: 10  
     },
     backButton: {
         borderLeftWidth: 10,

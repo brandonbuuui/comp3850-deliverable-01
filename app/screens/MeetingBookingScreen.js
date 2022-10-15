@@ -85,7 +85,7 @@ function MeetingBookingScreen({navigation}) {
                         }
                     }}
                 >
-                    <Text style = {styles.buttonText}>Book</Text>
+                    <Text style = {styles.buttonText}>Schedule</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style = {styles.bookButton}
@@ -115,8 +115,8 @@ const styles = StyleSheet.create ({
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 64, 
-        width: 64, 
+        height: 80, 
+        width: 80, 
         borderRadius: 75, 
         marginHorizontal: 20,
         borderColor: AppColours.lightblue, 
@@ -155,9 +155,9 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         margin: 5,
         backgroundColor: AppColours.lightblue,
-        width: 300,
-        height: 44,
-        borderRadius: 44/2,
+        width: 250,
+        height: 50,
+        borderRadius: 15,
         alignSelf: 'center',
         shadowColor: AppColours.black,
         shadowOffset: {width: -2, height: 4},

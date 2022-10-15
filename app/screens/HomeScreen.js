@@ -47,20 +47,21 @@ const styles = StyleSheet.create ({
     profileButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 64, 
-        width: 64, 
+        height: 80, 
+        width: 80, 
         borderRadius: 75, 
-        marginLeft: 100,
+        marginLeft: 80,
         borderColor: AppColours.lightblue, 
-        borderWidth: 5
+        borderWidth: 5,
     },
     welcomeText: {
         fontSize: 30,
-        fontWeight: '600'
+        fontWeight: '600',
+
     },
     header: {
         marginTop: 50,
-        marginBottom: 10,
+        marginHorizontal: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row-reverse'

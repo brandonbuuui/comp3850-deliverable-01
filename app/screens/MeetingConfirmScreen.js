@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, Button } from 'react-native';
 import AppColours from '../config/AppColours';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Ionicons} from '@expo/vector-icons'
+import Constants from 'expo-constants';
 
 function MeetingConfirmScreen({route, navigation}) {
     const {date, time} = route.params
@@ -14,14 +15,15 @@ function MeetingConfirmScreen({route, navigation}) {
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
                     >
-                        <Ionicons name='chevron-back-outline' size = '20'/>
+                        <Ionicons name='chevron-back-outline' size = '40'/>
                 </TouchableOpacity>
             </View>
             <View style={styles.title}>
                 <Text style={styles.titleText}>Meeting Confirmed</Text>
             </View>
             <View style={styles.content}>
-                <Text style={styles.contentText}>Your meeting is at {time} on the {date}</Text>
+                <Text style={styles.confirmText}>Your meeting with ... has been confirmed</Text>
+                <Text style={styles.contentText}>The meeting is at {time} on the {date} at ... </Text>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity 
@@ -37,45 +39,42 @@ function MeetingConfirmScreen({route, navigation}) {
 
 const styles = StyleSheet.create ({
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 5,
+        marginTop: 300,
         backgroundColor: AppColours.lightblue,
-        width: 300,
-        height: 44,
-        borderRadius: 44/2,
+        width: 250,
+        height: 50,
+        borderRadius: 15,
         alignSelf: 'center',
         shadowColor: AppColours.black,
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.3,
         shadowRadius: 3,
+        marginBottom: 50
     },
     header: {
-        flex: 1,
         alignItems: 'center',
         flexDirection: 'row',
         width: "100%",
+        marginTop: Constants.statusBarHeight+10,
     },
     title: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
         marginTop: 50,
     },
     content: {
-        flex: 7,
         alignItems: 'center',
         width: "100%",
-        marginTop: 200
+        marginTop: 80
     },
     footer: {
-        flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
@@ -84,17 +83,28 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignContent: 'center',
         color: 'white',
-        fontSize: 22,
+        fontSize: 25,
         fontWeight: '600',
     }, 
     backButton: {
-        marginRight: 200,
+        marginLeft:20,
     },
     titleText: {
-        fontSize: 22
+        fontSize: 45
     },
     contentText: {
-        fontSize: 20
+        fontSize: 30,
+        padding: 20,
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontWeight: '600'
+    },
+    confirmText: {
+        fontSize: 30,
+        padding: 20,
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontWeight: '600'
     }
 });
 

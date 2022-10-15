@@ -22,14 +22,14 @@ function ProfileScreen({navigation}) {
 
                 <ImageBackground 
                     style={styles.background}
-                    source = {require("../assets/we.jpeg")}>
+                    source = {currUser.background}>
                     <View style={styles.wallBar}>
-                        <TouchableOpacity>
-                            <Ionicons name='ios-arrow-back' size={40} color='white'></Ionicons>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             onPress={() => navigation.goBack()}
                             style={styles.backButton}>
+                            <Ionicons name='ios-arrow-back' size={40} color='white'></Ionicons>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
                             <Ionicons name='md-menu-outline' size={40} color='white'></Ionicons>
                         </TouchableOpacity>
                     </View>

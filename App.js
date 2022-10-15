@@ -6,14 +6,13 @@ import StackNavigator from './app/navigation/StackNavigator';
 import TabNavigator from './app/navigation/TabNavigator';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createRoot } from 'react-dom/client'
-import ProfileScreen from './app/screens/ProfileScreen';
 
 export default function App() {
   return (
     <NavigationContainer>
       <StackNavigator/>
     </NavigationContainer>
-    // <ProfileScreen/>
+
   );
 }
 

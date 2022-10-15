@@ -44,7 +44,8 @@ export default class DataManager {
             email:"winter.soldier@gmail.com",
             username: "winter.soldier",
             password:"1922",
-            image: require('../public/bucky.jpg')
+            image: require('../public/bucky.jpg'),
+            background: require("../assets/we.jpeg")
         },
         {
             id: "user2",
