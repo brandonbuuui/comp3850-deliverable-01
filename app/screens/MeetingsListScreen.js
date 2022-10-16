@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { NavigationContainer, useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { View, StyleSheet, Text, Button, Image, ScrollView } from 'react-native';
 import DataManager from '../config/DataManager';
 import AppButton from '../components/AppButton';
 import AppColours from '../config/AppColours';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import {Ionicons} from '@expo/vector-icons';
 import Constants from 'expo-constants';
+import {format} from 'date-fns'
 
 function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let meetings = data.getMeetings();
-
-    console.log(data.getCurrUser().image);
-
-    let dataUser = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
+    let date = new Date();
+    let currDate = format(date, "d/MM/yyyy")
+    let currTime = format(date, "h:mmaaa")
+
+    let prevMeetings = data.getPrevMeetings();
+    let upcomingMeetings = data.getUpcomingMeetings();
+    
+
+    const isFocused = useIsFocused();
 
     return (
         <ScrollView showsHorizontalScrollIndicator={true}>
@@ -49,7 +54,7 @@ function MeetingsListScreen({navigation}) {
                 </Text>
                 <FlatList
                     style={{borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF'}}
-                    data = {meetings}
+                    data = {upcomingMeetings}
                     keyExtractor = {item => item.id}
                     renderItem={({item}) => 
                             <TouchableOpacity
@@ -88,6 +93,31 @@ function MeetingsListScreen({navigation}) {
                 <Text style={{fontSize:25,borderWidth:20, borderColor:'#FFFFFF'}}>
                     Previous Meetings
                 </Text>
+                <FlatList
+                    style={{borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF'}}
+                    data = {prevMeetings}
+                    keyExtractor = {item => item.id}
+                    renderItem={({item}) => 
+                            <TouchableOpacity
+                                style = {styles.meetingCard}      
+                                onPress = {() => navigation.navigate("Details", {
+                                    date: item.date,
+                                    time: item.time
+                                })}
+                            >
+                                <Text style = {styles.meetingCardTitle}>
+                                    Meeting
+                                </Text>
+                                <Text style = {styles.meetingCardText}>
+                                    {item.date}
+                                </Text>
+                                <Text style = {styles.meetingCardText}>
+                                    {item.time}
+                                </Text>
+                            </TouchableOpacity>
+
+                    }
+                />
             </View>
             <View style = {styles.footer}>
                 <TouchableOpacity 

@@ -21,7 +21,7 @@ function HomeScreen({navigation}) {
                             source={currUser.image}>
                         </Image>
                 </TouchableOpacity>
-                <Text style={styles.welcomeText}>Hi {currUser.name}!</Text>
+                <Text style={styles.welcomeText}>Hi {currUser.firstName}!</Text>
             </View>
             <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Upcoming Meetings</Text>

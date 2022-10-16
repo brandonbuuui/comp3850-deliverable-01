@@ -71,10 +71,10 @@ function MeetingBookingScreen({navigation}) {
                     onPressOut = {() => {
                         if (date != null) {
                             navigation.navigate("Confirmation", {
-                                date: format(date, "d/MM/yyyy"),
+                                date: format(date, "yyyy/MM/dd"),
                                 time: format(date, "h:mmaaa")
                             })
-                            const formattedDate = format(date, "d/MM/yyyy")
+                            const formattedDate = format(date, "yyyy/MM/dd")
                             const formattedTime = format(date, "h:mmaaa")
                             if (data.meetings.length == 0) {
                                 data.meetings = [{id: 0, date: formattedDate, time: formattedTime}];

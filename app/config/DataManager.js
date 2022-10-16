@@ -1,3 +1,5 @@
+import {format, isThisQuarter} from 'date-fns'
+
 export default class DataManager {
     static myInstance = null;
     userID = "";
@@ -30,26 +32,23 @@ export default class DataManager {
     ]
 
     meetings = [
-        {
-             date: "26/09/2022",
-             time: "5:00pm",
-             id: 0
-        }
     ]
 
     users = [
         {
             id: "user1",
-            name:"Winter Soldier",
-            email:"winter.soldier@gmail.com",
+            firstName: "Bucky",
+            lastName: 'Barnes',
             username: "winter.soldier",
+            email:"winter.soldier@gmail.com",
             password:"1922",
             image: require('../public/bucky.jpg'),
             background: require("../assets/we.jpeg")
         },
         {
             id: "user2",
-            name:"Steve Rogers",
+            firstName: "Steve",
+            lastName: 'Rogers',
             username: 'steve.rogers',
             email:"captain.steve@yahoo.com",
             password:"1945",
@@ -76,6 +75,13 @@ export default class DataManager {
     }
 
     getMeetings() {
+        let ans = []
+        this.meetings.forEach((e) => {
+            if (e.userID == this.currUser.id) {
+                ans.push(e);
+            }
+        })
+
         return this.meetings
     }
 
@@ -83,7 +89,8 @@ export default class DataManager {
         this.meetings.push({
             id: this.meetingsCount,
             date: date,
-            time: time
+            time: time,
+            userID: this.user.id
         });
         this.meetingsCount++;
     }
@@ -101,13 +108,46 @@ export default class DataManager {
         })
     }
 
-    addUser(email, password, username) {
+    logout() {
+        this.currUser = [];
+        this.loggedIn = false;
+    }
+
+    addUser(email, password, username, firstName, lastName) {
         this.users.push({
             id: this.users.length,
+            firstName: firstName,
+            lastName: lastName,
             username: username,
             email: email,
             password: password
         })
+    }
+
+    getPrevMeetings() {
+        let date = new Date();
+        let currDate = format(date, "yyyy/MM/dd")
+        let currTime = format(date, "h:mmaaa")
+        let ans = [];
+        this.meetings.forEach((e) => {
+            if (e.date < currDate) {
+                ans.push(e)
+            } 
+        })
+        return ans.sort((a, b) => a.date < b.date);
+    }
+
+    getUpcomingMeetings() {
+        let date = new Date();
+        let currDate = format(date, "yyyy/MM/dd")
+        let currTime = format(date, "h:mmaaa")
+        let ans = [];
+        this.meetings.forEach((e) => {
+            if (e.date > currDate) {
+                ans.push(e)
+            } 
+        })
+        return ans.sort((a, b) => a.date > b.date);
     }
 
 

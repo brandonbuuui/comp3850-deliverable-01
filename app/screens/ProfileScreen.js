@@ -14,7 +14,6 @@ function ProfileScreen({navigation}) {
 
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
 
     return (
         <AppScreen style = {styles.container}>
@@ -43,9 +42,9 @@ function ProfileScreen({navigation}) {
 
                 <View style={styles.userinfo}>
                     <View style={styles.id}>
-                        <Text style={{fontSize: 25, fontWeight: '600'}}> Jay Jo </Text>
+                        <Text style={{fontSize: 25, fontWeight: '600'}}> {currUser.firstName} {currUser.lastName} </Text>
                         <View style={{marginVertical: 4}}></View>
-                        <Text style={{fontSize: 20, fontWeight: '100'}}> @jayii.jo </Text>
+                        <Text style={{fontSize: 20, fontWeight: '100'}}> @{currUser.username} </Text>
                     </View>
                     <View style={styles.editProButton}>
                         <AppButton title="Edit profile" color = "lightblue"></AppButton>
@@ -58,6 +57,17 @@ function ProfileScreen({navigation}) {
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>My Task</Text>   
                     <View style={styles.tasks}></View>        
                 </View>
+
+                
+                {/* LOGOUT BUTTON HERE */}
+                <TouchableOpacity
+                    onPress={() => {
+                        data.logout()
+                        navigation.navigate("Login")
+                    }}
+                >
+                    <Ionicons name='log-out-outline' size = '40' marginRight='auto'/>
+                </TouchableOpacity>
                 {/* </ScrollView> */}
         </AppScreen>
     );

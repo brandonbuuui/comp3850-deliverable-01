@@ -47,7 +47,7 @@ function RegisterScreen({navigation}) {
             <Formik
                 initialValues={{email:'', password: '', username: ''}}
                 onSubmit = {values => {
-                    data.addUser(values.email, values.password, values.username)
+                    data.addUser(values.email, values.password, values.username, values.firstName, values.lastName)
                     navigation.navigate("Login")
                 }}
                 >
@@ -61,8 +61,8 @@ function RegisterScreen({navigation}) {
                         placeholder="First Name"
                         placeholderTextColor="#BFB7B7"
                         textContentType="name-given"
-                        onChangeText =  {handleChange('name-given')}
-                        onBlur = {() => setFieldTouched('name-given')}
+                        onChangeText =  {handleChange('firstName')}
+                        onBlur = {() => setFieldTouched('firstName')}
                         />
                         {touched.username}
                         <AppTextInput
@@ -72,8 +72,8 @@ function RegisterScreen({navigation}) {
                         placeholder="Last Name"
                         placeholderTextColor="#BFB7B7"
                         textContentType="name-family"
-                        onChangeText =  {handleChange('name-family')}
-                        onBlur = {() => setFieldTouched('name-family')}
+                        onChangeText =  {handleChange('lastName')}
+                        onBlur = {() => setFieldTouched('lastName')}
                         />
                         {touched.username}
                     <AppTextInput
