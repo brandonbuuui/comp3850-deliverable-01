@@ -11,7 +11,6 @@ import AppScreen from '../components/AppScreen';
 function SurveyListScreen({navigation}) {
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
     return (
         <AppScreen style = {styles.container}>
              <View style = {styles.header}>
