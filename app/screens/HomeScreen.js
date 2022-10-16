@@ -42,7 +42,7 @@ const styles = StyleSheet.create ({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
-        alignItems: 'center',
+
     },
     profileButton: {
         justifyContent: 'center',
@@ -50,27 +50,28 @@ const styles = StyleSheet.create ({
         height: 80, 
         width: 80, 
         borderRadius: 75, 
-        marginLeft: 80,
         borderColor: AppColours.lightblue, 
         borderWidth: 5,
     },
     welcomeText: {
         fontSize: 30,
         fontWeight: '600',
-
     },
     header: {
         marginTop: 50,
-        marginHorizontal: 20,
-        justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row-reverse'
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        marginLeft: 20,
+        marginRight: 20,
+
     },
     content: {
         flex: 7,
         width: "95%",
         borderColor: '#FFFFFF',
         borderWidth: 5,
+        marginLeft: 10
 
     },
     nextMeeting: {

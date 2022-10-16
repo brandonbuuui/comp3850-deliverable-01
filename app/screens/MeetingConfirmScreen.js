@@ -1,13 +1,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import AppColours from '../config/AppColours';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Ionicons} from '@expo/vector-icons'
 import Constants from 'expo-constants';
 
+import DataManager from '../config/DataManager';
+
 function MeetingConfirmScreen({route, navigation}) {
     const {date, time} = route.params
+
+    let data = DataManager.getInstance();
+    let currUser = data.getCurrUser();
+    const {id} = route.params;
+    let e = data.getMeeting(id);
+
     return (
         <View style = {styles.container}>
             <View style={styles.header}>
@@ -20,10 +28,14 @@ function MeetingConfirmScreen({route, navigation}) {
             </View>
             <View style={styles.title}>
                 <Text style={styles.titleText}>Meeting Confirmed</Text>
+                <Image
+                            style = {styles.profileButton}
+                            source={currUser.image}>
+                </Image>
             </View>
             <View style={styles.content}>
                 <Text style={styles.confirmText}>Your meeting with ... has been confirmed</Text>
-                <Text style={styles.contentText}>The meeting is at {time} on the {date} at ... </Text>
+                <Text style={styles.contentText}>The meeting is at {time} on the {date} at {e.location} </Text>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity 
@@ -45,7 +57,7 @@ const styles = StyleSheet.create ({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 300,
+        marginTop: 180,
         backgroundColor: AppColours.lightblue,
         width: 250,
         height: 50,
@@ -61,7 +73,7 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         flexDirection: 'row',
         width: "100%",
-        marginTop: Constants.statusBarHeight+10,
+        marginTop: Constants.statusBarHeight+20,
     },
     title: {
         justifyContent: 'center',
@@ -72,7 +84,7 @@ const styles = StyleSheet.create ({
     content: {
         alignItems: 'center',
         width: "100%",
-        marginTop: 80
+        marginTop: 20
     },
     footer: {
         justifyContent: 'center',
@@ -105,6 +117,16 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         textAlign: 'center',
         fontWeight: '600'
+    },
+    profileButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 150, 
+        width: 150, 
+        borderRadius: 75, 
+        marginTop: 20,
+        borderColor: AppColours.lightblue, 
+        borderWidth: 5
     }
 });
 

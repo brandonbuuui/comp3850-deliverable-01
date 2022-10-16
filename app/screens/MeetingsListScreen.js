@@ -36,7 +36,7 @@ function MeetingsListScreen({navigation}) {
                 </TouchableOpacity>
             </View>
             <View style = {styles.title}>
-                <Text style={{fontSize: 40, borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF', marginTop: 15}}>
+                <Text style={{fontSize: 40, borderLeftWidth: 20, borderRightWidth:20, borderColor:'#FFFFFF', marginTop: 15, fontWeight: '500'}}>
                     Meetings List
                 </Text>
             </View>
@@ -140,13 +140,14 @@ const styles = StyleSheet.create ({
     title: {
         justifyContent: 'center',
         width: "100%",
+        marginTop: 30,
+        fontWeight: '500'
     },
     meetingsList: {
         width: "100%",
     },
     footer: {
-        flex: 1.5,
-        marginTop: 350,
+        marginTop: 410,
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",

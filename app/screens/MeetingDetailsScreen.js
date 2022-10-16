@@ -95,7 +95,8 @@ const styles = StyleSheet.create ({
     },
     titleText: {
         fontSize: 40,
-        marginLeft: 10
+        marginLeft: 10,
+        fontWeight: '500'
     },
     meetInfo: {
         flex: 1,

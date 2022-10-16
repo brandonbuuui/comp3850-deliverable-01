@@ -65,8 +65,11 @@ function ProfileScreen({navigation}) {
                         data.logout()
                         navigation.navigate("Login")
                     }}
-                >
-                    <Ionicons name='log-out-outline' size = '40' marginRight='auto'/>
+                >   
+                <View style={styles.logoutButtonContainer}>
+                    <Ionicons name='log-out-outline' size = '40' marginRight='auto' color='white'/>
+                    <Text style={{fontSize: 20, fontWeight: 'bold', color:'white', marginHorizontal: 20}}> Logout </Text>
+                </View>
                 </TouchableOpacity>
                 {/* </ScrollView> */}
         </AppScreen>
@@ -113,7 +116,7 @@ const styles = StyleSheet.create ({
         marginRight: 20
     },
     id: {
-        marginLeft: 55
+        marginLeft: 40
     },
     content: {
         flex: 8,
@@ -140,7 +143,22 @@ const styles = StyleSheet.create ({
         backgroundColor: AppColours.purple,
         borderRadius: 10,
         padding: 10,
-    }
+    },
+    logoutButtonContainer: {
+        backgroundColor: AppColours.lightblue,
+        marginHorizontal: 120,
+        marginBottom: 20,
+        height: 50,
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: AppColours.black,
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+    },
+
 });
 
 export default ProfileScreen;

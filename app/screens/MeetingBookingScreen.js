@@ -94,7 +94,7 @@ function MeetingBookingScreen({navigation}) {
                                 onBlur = {() => setFieldTouched('location')}
                                 onChangeText = { handleChange('location')}
                                 />
-                            <View>
+                            <View style={styles.datePicker}>
                             <Button title="Show Date Picker" onPress={showDatePicker} />
                             <DateTimePickerModal
                                 isVisible={isDatePickerVisible}
@@ -105,11 +105,13 @@ function MeetingBookingScreen({navigation}) {
                             </View>
                         </View>
                         <View style = {styles.footer}>
-                            <AppButton 
-                                title="Book" color = "lightblue" onPress={handleSubmit}>
-                            </AppButton>
+                            <View style={styles.bookButton}>
+                                <AppButton 
+                                    title="Book" color = "lightblue" onPress={handleSubmit}>
+                                </AppButton>
+                            </View>
                             <TouchableOpacity 
-                                style = {styles.bookButton}
+                                style = {styles.cancelButton}
                                 onPress = {() => navigation.goBack()}
                             >
                                 <Text style = {styles.buttonText}>Cancel</Text>
@@ -152,13 +154,13 @@ const styles = StyleSheet.create ({
         marginLeft:10,
     },
     title: {
-        flex: 1,
         justifyContent: 'center',
         width: "100%",
         borderLeftWidth: 20, 
         borderRightWidth:20, 
         borderColor:'#FFFFFF',
-        fontWeight: '500'
+        fontWeight: '500',
+        marginTop: 50
     },
     calendar: {
         flex: 7,
@@ -172,9 +174,10 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignItems: 'center',
         width: "100%",
-        marginBottom: 30
+        marginBottom: 30,
+        marginTop: 100,
     },
-    bookButton: {
+    cancelButton: {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 5,
@@ -195,6 +198,18 @@ const styles = StyleSheet.create ({
         fontSize: 22,
         fontWeight: '600',
     },
+    bookButton: {
+        marginTop: 80,
+        width: '61%',
+        alignSelf: 'center',
+        marginBottom: 20
+    },
+    inputContainer: {
+        marginTop: 50
+    },
+    datePicker: {
+        marginTop: 20
+    }
 });
 
 export default MeetingBookingScreen;

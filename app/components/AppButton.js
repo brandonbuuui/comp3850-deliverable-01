@@ -15,8 +15,8 @@ function AppButton({title, color="other", onPress}) {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: 'white',
-        padding: 15,
-        borderRadius: 40,
+        padding: 14,
+        borderRadius: 15,
         width: '95%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     text: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: '600',
         color: 'white'
     }
