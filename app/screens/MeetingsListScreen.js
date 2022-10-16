@@ -12,17 +12,9 @@ import {format} from 'date-fns'
 function MeetingsListScreen({navigation}) {
 
     let data = DataManager.getInstance();
-    let meetings = data.getMeetings();
     let currUser = data.getCurrUser();
-    let date = new Date();
-    let currDate = format(date, "d/MM/yyyy")
-    let currTime = format(date, "h:mmaaa")
-
     let prevMeetings = data.getPrevMeetings();
     let upcomingMeetings = data.getUpcomingMeetings();
-    
-
-    const isFocused = useIsFocused();
 
     return (
         <ScrollView showsHorizontalScrollIndicator={true}>
@@ -60,15 +52,14 @@ function MeetingsListScreen({navigation}) {
                             <TouchableOpacity
                                 style = {styles.meetingCard}      
                                 onPress = {() => navigation.navigate("Details", {
-                                    date: item.date,
-                                    time: item.time
+                                    id: item.id
                                 })}
                             >
                                 <Text style = {styles.meetingCardTitle}>
-                                   Casual Meet
+                                   {item.description}
                                 </Text>
                                 <Text style={{fontSize:20, marginLeft: 20, color: 'white', marginBottom: 15, fontWeight: '500'}}>
-                                    .. and you
+                                    Mentor/Mentee and you
                                 </Text>
                                 <View style={styles.meettingDetails}>
                                     <Image

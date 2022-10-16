@@ -12,9 +12,9 @@ function MeetingDetailsScreen({route, navigation}) {
 
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
+    const {id} = route.params;
+    let e = data.getMeeting(id);
 
-    const {date, time} = route.params
 
     return (
         <View style = {styles.container}>
@@ -39,7 +39,7 @@ function MeetingDetailsScreen({route, navigation}) {
             <View style={styles.meetInfo}>
                 <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View style={styles.meetContent}>
-                        <Text style={styles.meetText1}>Casual Meet</Text>
+                        <Text style={styles.meetText1}>Mentor/Mentee</Text>
                         <Text style={styles.meetText2}>and You</Text>
                     </View>
                     <Image
@@ -51,19 +51,19 @@ function MeetingDetailsScreen({route, navigation}) {
             <View style={styles.content}>
                 <View style={{flex:1, flexDirection:'row'}}>
                     <Ionicons name='location-outline' size={30} color='white'/>
-                    <Text style={styles.contentText}>Location: </Text>
+                    <Text style={styles.contentText}>Location: {e.location}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
                 <Ionicons name='calendar-outline' size={30} color='white'/>
-                    <Text style={styles.contentText}>Date: {date.toString()}</Text>
+                    <Text style={styles.contentText}>Date: {e.date}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
                 <Ionicons name='time-outline' size={30} color='white'/>
-                    <Text style={styles.contentText}>Time: {time.toString()}</Text>
+                    <Text style={styles.contentText}>Time: {e.time}</Text>
                 </View>
                 <View style={{flex:1, flexDirection:'row'}}>
                     <Ionicons name='pencil-outline' size={30} color='white' marginRight='10'/>
-                    <Text style={styles.contentText}>Description:</Text>
+                    <Text style={styles.contentText}>Description: {e.description}</Text>
                 </View>
             </View>
             

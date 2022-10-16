@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, TouchableOpacity, Image } from 'react-native';
 import AppColours from '../config/AppColours';
+import AppTextInput from '../components/AppTextInput';
+import AppText from '../components/AppText';
+import AppButton from '../components/AppButton';
 
 import Constants from 'expo-constants';
-
-import DatePicker from "react-datepicker";
-
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DataManager from '../config/DataManager';
 import {format} from 'date-fns'
 import {Ionicons} from'@expo/vector-icons';
+import { Formik } from 'formik';
 
 function MeetingBookingScreen({navigation}) {
     let data = DataManager.getInstance();
@@ -25,14 +26,12 @@ function MeetingBookingScreen({navigation}) {
     };
 
     const handleConfirm = (date) => {
-        console.warn("A date has been picked: ", date);
         setDate(date)
         hideDatePicker();
     };
 
     let dataUser = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    console.log(currUser.email)
 
     return (
         <View style = {styles.container}>
@@ -54,46 +53,71 @@ function MeetingBookingScreen({navigation}) {
             <View style = {styles.title}>
                 <Text style={{fontSize: 40, fontWeight: '500'}}> Book A Meeting </Text>
             </View>
-
-            <View style={styles.calendar}>
-                <Button title="Show Date Picker" onPress={showDatePicker} />
-                <DateTimePickerModal
-                    isVisible={isDatePickerVisible}
-                    mode="datetime"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                />
-            </View>
-
-            <View style = {styles.footer}>
-                <TouchableOpacity
-                    style = {styles.bookButton}
-                    onPressOut = {() => {
-                        if (date != null) {
-                            navigation.navigate("Confirmation", {
-                                date: format(date, "yyyy/MM/dd"),
-                                time: format(date, "h:mmaaa")
-                            })
-                            const formattedDate = format(date, "yyyy/MM/dd")
-                            const formattedTime = format(date, "h:mmaaa")
-                            if (data.meetings.length == 0) {
-                                data.meetings = [{id: 0, date: formattedDate, time: formattedTime}];
-                                data.meetingsCount++;
-                            } else {
-                                data.addMeeting(formattedDate, formattedTime);
-                            }
-                        }
-                    }}
-                >
-                    <Text style = {styles.buttonText}>Schedule</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style = {styles.bookButton}
-                    onPress = {() => navigation.goBack()}
-                >
-                    <Text style = {styles.buttonText}>Cancel</Text>
-                </TouchableOpacity> 
-            </View>
+            <Formik
+                initialValues ={{location:'', description:''}}
+                onSubmit = {(values, {resetForm}) => {
+                    console.log(date)
+                    console.log(values.location)
+                    if (date != null) {
+                        navigation.navigate("Confirmation", {
+                            date: format(date, "yyyy/MM/dd"),
+                            time: format(date, "h:mmaaa")
+                            
+                        })
+                        const formattedDate = format(date, "yyyy/MM/dd")
+                        const formattedTime = format(date, "h:mmaaa")
+                        data.addMeeting(formattedDate, formattedTime, values.location, values.description);
+                    }
+                    resetForm
+                }}
+            >
+                {({values, handleChange, handleSubmit, setFieldTouched, touched, errors}) => (
+                    <>
+                        <View style={styles.inputContainer}>
+                            <AppTextInput 
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                icon="pencil" 
+                                placeholder="Description"
+                                placeholderTextColor="#BFB7B7"
+                                value={values.description}
+                                onBlur = {() => setFieldTouched('description')}
+                                onChangeText =  { handleChange('description')}
+                                />
+                            <AppTextInput 
+                                icon="location-enter" 
+                                placeholder="Location" 
+                                placeholderTextColor="#BFB7B7"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={values.location}
+                                onBlur = {() => setFieldTouched('location')}
+                                onChangeText = { handleChange('location')}
+                                />
+                            <View>
+                            <Button title="Show Date Picker" onPress={showDatePicker} />
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="datetime"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                            />
+                            </View>
+                        </View>
+                        <View style = {styles.footer}>
+                            <AppButton 
+                                title="Book" color = "lightblue" onPress={handleSubmit}>
+                            </AppButton>
+                            <TouchableOpacity 
+                                style = {styles.bookButton}
+                                onPress = {() => navigation.goBack()}
+                            >
+                                <Text style = {styles.buttonText}>Cancel</Text>
+                            </TouchableOpacity> 
+                        </View>
+                    </>
+                )}
+            </Formik>     
         </View>
     );
 }

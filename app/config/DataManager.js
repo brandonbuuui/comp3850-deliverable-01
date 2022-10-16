@@ -3,7 +3,7 @@ import {format, isThisQuarter} from 'date-fns'
 export default class DataManager {
     static myInstance = null;
     userID = "";
-    meetingsCount = 1;
+    meetingsCount = 0;
     currUser = [];
     loggedIn = false;
 
@@ -36,7 +36,7 @@ export default class DataManager {
 
     users = [
         {
-            id: "user1",
+            id: "0",
             firstName: "Bucky",
             lastName: 'Barnes',
             username: "winter.soldier",
@@ -46,7 +46,7 @@ export default class DataManager {
             background: require("../assets/we.jpeg")
         },
         {
-            id: "user2",
+            id: "1",
             firstName: "Steve",
             lastName: 'Rogers',
             username: 'steve.rogers',
@@ -74,7 +74,7 @@ export default class DataManager {
         return this.photos.filter((photo) => photo.userid === id);
     }
 
-    getMeetings() {
+    getMeetingsList() {
         let ans = []
         this.meetings.forEach((e) => {
             if (e.userID == this.currUser.id) {
@@ -82,15 +82,28 @@ export default class DataManager {
             }
         })
 
-        return this.meetings
+        return ans
     }
 
-    addMeeting(date, time) {
+    getMeeting(id) {
+        let ans = []
+        this.meetings.forEach((e) => {
+            console.log("getMeeting")
+            if (e.id == id) {
+                ans = e
+            }
+        })
+        return ans;
+    }
+
+    addMeeting(date, time, location, description) {
         this.meetings.push({
             id: this.meetingsCount,
             date: date,
             time: time,
-            userID: this.user.id
+            userID: this.currUser.id,
+            location: location,
+            description: description
         });
         this.meetingsCount++;
     }
@@ -130,9 +143,11 @@ export default class DataManager {
         let currTime = format(date, "h:mmaaa")
         let ans = [];
         this.meetings.forEach((e) => {
-            if (e.date < currDate) {
-                ans.push(e)
-            } 
+            if (e.userID == this.currUser.id) {
+                if (e.date < currDate) {
+                    ans.push(e)
+                } 
+            }
         })
         return ans.sort((a, b) => a.date < b.date);
     }
@@ -143,9 +158,11 @@ export default class DataManager {
         let currTime = format(date, "h:mmaaa")
         let ans = [];
         this.meetings.forEach((e) => {
-            if (e.date > currDate) {
-                ans.push(e)
-            } 
+            if (e.userID == this.currUser.id) {
+                if (e.date > currDate) {
+                    ans.push(e)
+                } 
+            }
         })
         return ans.sort((a, b) => a.date > b.date);
     }
