@@ -56,12 +56,12 @@ function MeetingBookingScreen({navigation}) {
             <Formik
                 initialValues ={{location:'', description:''}}
                 onSubmit = {(values, {resetForm}) => {
-                    console.log(date)
-                    console.log(values.location)
                     if (date != null) {
                         navigation.navigate("Confirmation", {
                             date: format(date, "yyyy/MM/dd"),
-                            time: format(date, "h:mmaaa")
+                            time: format(date, "h:mmaaa"),
+                            location: values.location,
+                            description: values.description
                             
                         })
                         const formattedDate = format(date, "yyyy/MM/dd")

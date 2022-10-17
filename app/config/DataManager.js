@@ -81,14 +81,12 @@ export default class DataManager {
                 ans.push(e);
             }
         })
-
         return ans
     }
 
     getMeeting(id) {
         let ans = []
         this.meetings.forEach((e) => {
-            console.log("getMeeting")
             if (e.id == id) {
                 ans = e
             }
@@ -165,6 +163,15 @@ export default class DataManager {
             }
         })
         return ans.sort((a, b) => a.date > b.date);
+    }
+
+    getNextUpcoming() {
+        let meetings = this.getMeetingsList();
+        let ans = {description: 'Nothing Upcoming', location:'', date: '', time: ''}
+        if (meetings.length != 0) {
+            ans = meetings[0];
+        } 
+        return ans;
     }
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useReducer, useState, useEffect} from 'react';
 import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import DataManager from '../config/DataManager';
@@ -7,10 +7,11 @@ import AppColours from '../config/AppColours';
 import {Ionicons} from '@expo/vector-icons'
 
 
-
 function HomeScreen({navigation}) {
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
+    let nextUpcoming = data.getNextUpcoming();
+
     return (
         <View style = {styles.container}>
             <View style = {styles.header}>
@@ -26,7 +27,12 @@ function HomeScreen({navigation}) {
             <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Upcoming Meetings</Text>
                     <View style={styles.nextMeeting}>
-                    <Text style={{fontSize:18, color: AppColours.white}}>Casual Meet</Text>
+                    <Text style={{fontSize:18, color: AppColours.white}}>
+                        {nextUpcoming.description}
+                        {nextUpcoming.location}
+                        {nextUpcoming.date}
+                        {nextUpcoming.time}
+                    </Text>
                     </View>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Most Recent Survey</Text>   
                     <View style={styles.nextSurvey}></View>         

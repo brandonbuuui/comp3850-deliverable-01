@@ -9,12 +9,10 @@ import Constants from 'expo-constants';
 import DataManager from '../config/DataManager';
 
 function MeetingConfirmScreen({route, navigation}) {
-    const {date, time} = route.params
+    const {date, time, location, description} = route.params
 
     let data = DataManager.getInstance();
     let currUser = data.getCurrUser();
-    const {id} = route.params;
-    let e = data.getMeeting(id);
 
     return (
         <View style = {styles.container}>
@@ -35,7 +33,7 @@ function MeetingConfirmScreen({route, navigation}) {
             </View>
             <View style={styles.content}>
                 <Text style={styles.confirmText}>Your meeting with ... has been confirmed</Text>
-                <Text style={styles.contentText}>The meeting is at {time} on the {date} at {e.location} </Text>
+                <Text style={styles.contentText}>The meeting is at {time} on the {date} at {location} </Text>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity 
