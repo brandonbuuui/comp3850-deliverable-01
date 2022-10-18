@@ -38,7 +38,7 @@ function MeetingConfirmScreen({route, navigation}) {
             <View style={styles.footer}>
                 <TouchableOpacity 
                     style = {styles.button}
-                    onPress = {() => navigation.navigate("Home")}
+                    onPress = {() => navigation.navigate("Meetings")}
                 >
                     <Text style = {styles.buttonText}>Continue</Text>
                 </TouchableOpacity> 

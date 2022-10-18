@@ -1,4 +1,4 @@
-import {React, useReducer, useState, useEffect} from 'react';
+import React, {useReducer, useState, useEffect} from 'react';
 import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import DataManager from '../config/DataManager';
@@ -8,9 +8,23 @@ import {Ionicons} from '@expo/vector-icons'
 
 
 function HomeScreen({navigation}) {
-    let data = DataManager.getInstance();
+
+    const [data, setData] = useState(DataManager.getInstance())
     let currUser = data.getCurrUser();
-    let nextUpcoming = data.getNextUpcoming();
+    const [prevMeetings, setPrevMeetings] = useState(data.getPrevMeetings())
+    const [upcomingMeetings, setUpcomingMeetings] = useState(data.getUpcomingMeetings())
+    const [nextUpcoming, setNextUpcoming] = useState(data.getNextUpcoming())
+
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setData(DataManager.getInstance())
+            setPrevMeetings([...data.getPrevMeetings()])
+            setUpcomingMeetings([...data.getUpcomingMeetings()])
+            setNextUpcoming(data.getNextUpcoming())
+        });
+    
+        return unsubscribe;
+      }, []);
 
     return (
         <View style = {styles.container}>
@@ -27,12 +41,13 @@ function HomeScreen({navigation}) {
             <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Upcoming Meetings</Text>
                     <View style={styles.nextMeeting}>
-                    <Text style={{fontSize:18, color: AppColours.white}}>
-                        {nextUpcoming.description}
-                        {nextUpcoming.location}
-                        {nextUpcoming.date}
-                        {nextUpcoming.time}
-                    </Text>
+                        {/* NEXT UPCOMING MEETING HERE */}
+                        <Text style={{fontSize:18, color: AppColours.white}}>
+                            {nextUpcoming.description} {"\n"}
+                            {nextUpcoming.location} {"\n"}
+                            {nextUpcoming.date} {" "}
+                            {nextUpcoming.time}
+                        </Text>
                     </View>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Most Recent Survey</Text>   
                     <View style={styles.nextSurvey}></View>         

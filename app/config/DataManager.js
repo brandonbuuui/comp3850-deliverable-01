@@ -7,30 +7,6 @@ export default class DataManager {
     currUser = [];
     loggedIn = false;
 
-    photos = [
-        {
-            userid: "user1",
-            photoid: 1,
-            date: "28th December 2021",
-            image: require("../assets/family.jpeg"),
-            category: "Family"
-        },
-        {
-            userid: "user1",
-            photoid: 2,
-            date: "31st July 2021",
-            image: require("../assets/wine.jpeg"),
-            category: "Outing"
-        },
-        {
-            userid: "user1",
-            photoid: 3,
-            date: "5th June 2021",
-            image: require("../assets/ramen.jpeg"),
-            category: "Food"
-        },
-    ]
-
     meetings = [
     ]
 

@@ -10,11 +10,21 @@ import Constants from 'expo-constants';
 import {format} from 'date-fns'
 
 function MeetingsListScreen({navigation}) {
-
-    let data = DataManager.getInstance();
+    const [data, setData] = useState(DataManager.getInstance())
     let currUser = data.getCurrUser();
-    let prevMeetings = data.getPrevMeetings();
-    let upcomingMeetings = data.getUpcomingMeetings();
+    const [prevMeetings, setPrevMeetings] = useState(data.getPrevMeetings())
+    const [upcomingMeetings, setUpcomingMeetings] = useState(data.getUpcomingMeetings())
+
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setData(DataManager.getInstance())
+            setPrevMeetings([...data.getPrevMeetings()])
+            setUpcomingMeetings([...data.getUpcomingMeetings()])
+        });
+    
+        return unsubscribe;
+      }, []);
+    
 
     return (
         <ScrollView showsHorizontalScrollIndicator={true}>

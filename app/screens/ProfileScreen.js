@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Image, ScrollView, TouchableOpacity, ImageBackground, Text } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
@@ -12,9 +12,23 @@ import DataManager from '../config/DataManager';
 
 function ProfileScreen({navigation}) {
 
-    let data = DataManager.getInstance();
+    const [data, setData] = useState(DataManager.getInstance())
     let currUser = data.getCurrUser();
+    const [prevMeetings, setPrevMeetings] = useState(data.getPrevMeetings())
+    const [upcomingMeetings, setUpcomingMeetings] = useState(data.getUpcomingMeetings())
+    const [nextUpcoming, setNextUpcoming] = useState(data.getNextUpcoming())
 
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setData(DataManager.getInstance())
+            setPrevMeetings([...data.getPrevMeetings()])
+            setUpcomingMeetings([...data.getUpcomingMeetings()])
+            setNextUpcoming(data.getNextUpcoming())
+        });
+    
+        return unsubscribe;
+      }, []);
+      
     return (
         <AppScreen style = {styles.container}>
            
@@ -53,7 +67,15 @@ function ProfileScreen({navigation}) {
                 {/* <ScrollView showsHorizontalScrollIndicator={false}> */}
                 <View style = {styles.content}>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>Reminder</Text>
-                    <View style={styles.reminder}></View>
+                    <View style={styles.reminder}>
+                        {/* NEXT UPCOMING MEETING HERE */}
+                        <Text style={{fontSize:18, color: AppColours.white}}>
+                            {nextUpcoming.description} {"\n"}
+                            {nextUpcoming.location} {"\n"}
+                            {nextUpcoming.date} {" "}
+                            {nextUpcoming.time}
+                        </Text>
+                    </View>
                     <Text style={{marginTop: 20, fontSize:25, fontWeight: '500'}}>My Task</Text>   
                     <View style={styles.tasks}></View>        
                 </View>
